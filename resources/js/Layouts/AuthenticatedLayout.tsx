@@ -9,19 +9,7 @@ import {
     CardDescription,
 } from "@/Components/shadcn/Card";
 
-import { DiscordLogoIcon } from "@radix-ui/react-icons";
-import {
-    Bell,
-    Check,
-    ChevronDown,
-    Circle,
-    Gauge,
-    Hash,
-    Star,
-    UserPlus2,
-} from "lucide-react";
-import { Button } from "@/Components/shadcn/Button";
-import { Separator } from "@/Components/shadcn/Separator";
+import { ChevronDown, Gauge, Hash, UserPlus2 } from "lucide-react";
 
 const data = [
     {

@@ -12,37 +12,23 @@
 
 namespace App\Models{
 /**
- * App\Models\Form
+ * App\Models\Event
  *
- * @property int $id
- * @property int $team_id
- * @property string $title
- * @property array $content_items
- * @property string|null $published_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Respondent> $respondents
- * @property-read int|null $respondents_count
- * @property-read \App\Models\Team $team
- * @method static \Illuminate\Database\Eloquent\Builder|Form newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Form newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Form query()
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereContentItems($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form wherePublishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Form whereUpdatedAt($value)
+ * @property-read \App\Models\Team|null $team
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
+ * @property-read int|null $topics_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event query()
  */
-	class Form extends \Eloquent {}
+	class Event extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * App\Models\Invitation
  *
- * @property-read \App\Models\Team $team
+ * @property-read \App\Models\Team|null $team
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation query()
@@ -60,7 +46,7 @@ namespace App\Models{
  * @property string|null $role
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Team $team
+ * @property-read \App\Models\Team|null $team
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
@@ -77,28 +63,6 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Respondent
- *
- * @property int $id
- * @property int $form_id
- * @property array $responses
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Form $form
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent query()
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent whereFormId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent whereResponses($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Respondent whereUpdatedAt($value)
- */
-	class Respondent extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\Team
  *
  * @property int $id
@@ -107,11 +71,13 @@ namespace App\Models{
  * @property bool $is_personal
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Form> $forms
- * @property-read int|null $forms_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
+ * @property-read int|null $events_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Invitation> $invitations
  * @property-read int|null $invitations_count
  * @property-read \App\Models\User|null $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
+ * @property-read int|null $topics_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
@@ -125,6 +91,28 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserId($value)
  */
 	class Team extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Topic
+ *
+ * @property int $id
+ * @property int $team_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
+ * @property-read int|null $events_count
+ * @property-read \App\Models\Team $team
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereUpdatedAt($value)
+ */
+	class Topic extends \Eloquent {}
 }
 
 namespace App\Models{

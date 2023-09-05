@@ -57,7 +57,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'domain' => env('APP_DOMAIN', 'forms.id'),
+    'domain' => env('APP_DOMAIN', 'saasping.com'),
+
+    'api_domain' => env('API_DOMAIN', 'api.saasping.com'),
 
     'asset_url' => env('ASSET_URL'),
 

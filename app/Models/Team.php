@@ -28,9 +28,9 @@ class Team extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function notifications()
+    public function events()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Event::class);
     }
 
     /**

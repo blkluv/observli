@@ -9,9 +9,9 @@ class Topic extends Model
 {
     use HasFactory;
 
-    public function notifications()
+    public function events()
     {
-        return $this->belongsToMany(Notification::class);
+        return $this->belongsToMany(Event::class);
     }
 
     public function team()

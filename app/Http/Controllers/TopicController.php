@@ -14,7 +14,7 @@ use Inertia\Response;
 class TopicController extends Controller
 {
     /**
-     * Show all of the user's current teams' forms.
+     * Show all of the user's current teams' topics.
      *
      * @return \Inertia\Response
      */
@@ -37,7 +37,7 @@ class TopicController extends Controller
     {
         $forms = Auth::user()->currentTeam->forms()->latest()->get();
 
-        return Inertia::render('Dashboard/Form/Create', [
+        return Inertia::render('Dashboard/Topic/Create', [
             'forms' => FormData::collection($forms),
         ]);
     }
@@ -51,11 +51,11 @@ class TopicController extends Controller
     public function store(Request $request): RedirectResponse
     {
         Auth::user()->currentTeam->forms()->create([
-            'content_items' => $request->content_items,
+            'content' => $request->content,
             'title' => $request->title,
         ]);
 
-        return Redirect::to(route('forms.index'));
+        return Redirect::to(route('topics.index'));
     }
 
     /**
@@ -65,7 +65,7 @@ class TopicController extends Controller
      */
     public function show($slug): Response
     {
-        return Inertia::render('Dashboard/Toic/Show', [
+        return Inertia::render('Dashboard/Topic/Show', [
             'topic' => FormData::from(Topic::where('slug', $slug)->firstOrFail()),
         ]);
     }
@@ -78,8 +78,8 @@ class TopicController extends Controller
 
     public function edit($id): Response
     {
-        return Inertia::render('Dashboard/Form/Edit', [
-            'form' => FormData::from(Form::findOrFail($id)),
+        return Inertia::render('Dashboard/Topic/Edit', [
+            'form' => FormData::from(Topic::findOrFail($id)),
         ]);
     }
 
@@ -89,10 +89,10 @@ class TopicController extends Controller
     public function destroy($id): RedirectResponse
     {
         try {
-            Form::findOrFail($id)->delete();
+            Topic::findOrFail($id)->delete();
         } catch (\Exception $e) {
-            return Redirect::to(route('forms.index'));
+            return Redirect::to(route('topics.index'));
         }
-        return Redirect::to(route('forms.index'));
+        return Redirect::to(route('topics.index'));
     }
 }
