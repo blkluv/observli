@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +17,13 @@ use Inertia\Inertia;
 */
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
+    Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/t/', [TopicController::class, 'index'])->name('topics.index');
-    Route::get('/t/{slug}', [TopicController::class, 'show'])->name('topics.show');
 });
-
-Route::get('/', function () {
-    return redirect()->route('login');
-})->middleware(['guest']);
 
 require __DIR__.'/auth.php';

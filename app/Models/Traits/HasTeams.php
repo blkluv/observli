@@ -84,7 +84,6 @@ trait HasTeams
     {
         return $this->belongsToMany(Team::class, Membership::class)
             ->withPivot('role')
-            ->withTimestamps()
             ->as('membership');
     }
 
@@ -95,7 +94,7 @@ trait HasTeams
      */
     public function personalTeam()
     {
-        return $this->ownedTeams->where('is_personal', true)->first();
+        return $this->ownedTeams->first();
     }
 
     /**

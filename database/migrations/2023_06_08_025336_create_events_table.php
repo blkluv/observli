@@ -14,8 +14,8 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('team_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('subtitle')->optional();
-            $table->json('content');
+            $table->string('message')->nullable();
+            $table->json('context');
             $table->timestamps();
         });
     }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\EventData;
 use App\Models\Topic;
-use App\Data\FormData;
+use App\Data\TopicData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,66 +21,44 @@ class TopicController extends Controller
      */
     public function index(): Response
     {
-        $topics = Auth::user()->currentTeam->topics()->latest()->get();
+        $topics = Auth::user()->currentTeam->topics()->get();
 
         return Inertia::render('Dashboard/Topic/Index', [
-            'topics' => FormData::collection($topics),
+            'topics' => TopicData::collection($topics),
         ]);
     }
 
+    // /**
+    //  * Create a new topic.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\RedirectResponse
+    //  */
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     Auth::user()->currentTeam->forms()->create([
+    //         'content' => $request->content,
+    //         'title' => $request->title,
+    //     ]);
+
+    //     return Redirect::to(route('topics.index'));
+    // }
+
     /**
-     * Show the form creation screen.
+     * Display the topic page.
      *
      * @return \Inertia\Response
      */
-
-    public function create(): Response
+    public function show($id): Response
     {
-        $forms = Auth::user()->currentTeam->forms()->latest()->get();
+        $topic = Topic::findOrFail($id);
+        $events = $topic->events()->latest()->get();
+        $topics = Auth::user()->currentTeam->topics()->get();
 
-        return Inertia::render('Dashboard/Topic/Create', [
-            'forms' => FormData::collection($forms),
-        ]);
-    }
-
-    /**
-     * Create a new form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        Auth::user()->currentTeam->forms()->create([
-            'content' => $request->content,
-            'title' => $request->title,
-        ]);
-
-        return Redirect::to(route('topics.index'));
-    }
-
-    /**
-     * Display the form management page.
-     *
-     * @return \Inertia\Response
-     */
-    public function show($slug): Response
-    {
         return Inertia::render('Dashboard/Topic/Show', [
-            'topic' => FormData::from(Topic::where('slug', $slug)->firstOrFail()),
-        ]);
-    }
-
-    /**
-     * Show the form edit screen.
-     *
-     * @return \Inertia\Response
-     */
-
-    public function edit($id): Response
-    {
-        return Inertia::render('Dashboard/Topic/Edit', [
-            'form' => FormData::from(Topic::findOrFail($id)),
+            'events' => EventData::collection($events),
+            'topic' => TopicData::from($topic),
+            'topics' => TopicData::collection($topics),
         ]);
     }
 

@@ -2,21 +2,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-import FormsIndex from "./Partials/FormsIndex";
+import TopicsIndex from "./Partials/TopicsIndex";
 
 export default function Index({ auth, topics }) {
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Forms
-                </h2>
-            }
-        >
+        <AuthenticatedLayout topics={topics} user={auth.user}>
             <Head title="SaasPing" />
 
-            <FormsIndex forms={topics} />
+            {/* <TopicsIndex topics={topics} /> */}
         </AuthenticatedLayout>
     );
 }

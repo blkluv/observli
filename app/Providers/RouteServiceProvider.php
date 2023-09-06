@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/t';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -41,14 +41,6 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::bind('id', function ($value) {
-            try {
-                return (new HashidManager())->decode($value);
-            } catch (\Exception $e) {
-                abort(404);
-            }
-        });
-
-        Route::bind('team_identifier', function ($value) {
             try {
                 return (new HashidManager())->decode($value);
             } catch (\Exception $e) {

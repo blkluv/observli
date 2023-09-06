@@ -14,12 +14,14 @@ class Membership extends Pivot
     protected $table = 'team_user';
 
     /**
-     * The attributes that should be cast.
+     * The attributes that are mass assignable.
      *
-     * @var array<string, string>
+     * @var array<int, string>
      */
-    protected $casts = [
-
+    protected $fillable = [
+        'role',
+        'team_id',
+        'user_id',
     ];
 
     public function team()

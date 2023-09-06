@@ -9,6 +9,9 @@ use App\Actions\Contracts\SendOTPNotificationContract;
 use App\Actions\GenerateOTP;
 use App\Actions\RememberOTP;
 use App\Actions\SendOTPNotification;
+use App\Models\Event;
+use App\Models\Team;
+use App\Models\User;
 use App\Objects\OTPGenerator;
 use Illuminate\Support\ServiceProvider;
 
@@ -47,6 +50,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::observe(\App\Observers\EventObserver::class);
+        Team::observe(\App\Observers\TeamObserver::class);
+        User::observe(\App\Observers\UserObserver::class);
     }
 }

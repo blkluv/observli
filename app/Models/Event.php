@@ -15,7 +15,7 @@ class Event extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'content' => 'object'
+        'context' => 'array'
     ];
 
     /**
@@ -24,14 +24,15 @@ class Event extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'content',
+        'team_id',
+        'context',
         'subtitle',
         'title'
     ];
 
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->belongsToMany(Topic::class);
     }
 
     public function team()

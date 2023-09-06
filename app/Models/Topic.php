@@ -9,6 +9,8 @@ class Topic extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'description', 'team_id'];
+
     public function events()
     {
         return $this->belongsToMany(Event::class);

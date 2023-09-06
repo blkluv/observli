@@ -3,25 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Team extends Model
 {
+    use HasApiTokens;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
 
-    protected $fillable = ['is_personal', 'name'];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'is_personal' => 'boolean',
-    ];
+    protected $fillable = ['name'];
 
     /**
      * Get all of the forms for the team.

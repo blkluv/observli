@@ -13,6 +13,9 @@ return new class () extends Migration {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

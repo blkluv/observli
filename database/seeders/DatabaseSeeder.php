@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Peter Parker',
             'email' => 'peter@parker.com',
         ]);
-        $user->ownedTeams()->create([
-            'name' => "Personal",
-            'is_personal' => true,
-        ]);
+        $token = $user->teams()->first()->createToken('api')->plainTextToken;
+        $this->command->info($token);
     }
 }
