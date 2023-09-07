@@ -11,11 +11,15 @@ import {
     CardTitle,
 } from "@/Components/shadcn/Card";
 import { Gauge, UserPlus2 } from "lucide-react";
+import AddMembers from "@/Modals/AddMembers";
 
 export default function Dashboard({ auth, events, topics }) {
+    const [showAddMembersModal, setShowAddMembersModal] = React.useState(false);
+    const closeModal = () => setShowAddMembersModal(false);
     return (
         <AuthenticatedLayout topics={topics} user={auth.user}>
             <Head title="Dashboard" />
+            <AddMembers close={closeModal} show={showAddMembersModal} />
             <div className="flex flex-col">
                 <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700">
                     <div className="flex items-center text-white/90">
@@ -23,7 +27,10 @@ export default function Dashboard({ auth, events, topics }) {
                         <span className="whitespace-nowrap">Dashboard</span>
                     </div>
                     <div className="hidden items-center ml-auto md:flex">
-                        <button className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99">
+                        <button
+                            onClick={() => setShowAddMembersModal(true)}
+                            className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                        >
                             <UserPlus2 className="w-4 h-4"></UserPlus2>{" "}
                             <span>Add members</span>
                         </button>
