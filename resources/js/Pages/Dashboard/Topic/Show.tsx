@@ -10,7 +10,7 @@ export default function Show({ auth, events, topic, topics }) {
             <Head title={"# " + topic.name} />
 
             <div className="flex flex-col">
-                <div className="flex items-center px-8 h-12 shadow-sm border-b border-gray-500/20">
+                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 backdrop-blur">
                     <div className="flex items-center">
                         <Hash className="mx-2 w-4 h-4 font-semibold text-gray-200" />
                         <span className="mr-2 font-title text-white whitespace-nowrap">

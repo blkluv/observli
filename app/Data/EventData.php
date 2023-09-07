@@ -17,7 +17,8 @@ class EventData extends Data
         public readonly array $context,
         /** @var DataCollection<TopicData> */
         public readonly array $topics,
-        public readonly string $created_at,
+        public readonly int $time,
+        public readonly string $nice_time,
     ) {
 
     }
@@ -33,7 +34,8 @@ class EventData extends Data
             'message' => $event->message,
             'context' => $event->context,
             'topics' => $topics->map(fn ($topic) => $topic->name)->all(),
-            'created_at' => $event->created_at->diffForHumans(),
+            'time' => $event->created_at->timestamp,
+            'nice_time' => $event->created_at->diffForHumans(),
         ]);
     }
 }

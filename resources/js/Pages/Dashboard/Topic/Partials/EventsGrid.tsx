@@ -12,10 +12,7 @@ export default function EventsGrid({ events }) {
     return (
         <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-4">
             {events.map((event) => (
-                <Card
-                    className="bg-dark-900 border border-gray-500/20 shadow relative"
-                    key={event.id}
-                >
+                <Card key={event.id}>
                     <CardHeader className="space-y-0">
                         <div className="space-y-3">
                             <CardTitle className="text-white flex items-center justify-between">
@@ -36,7 +33,7 @@ export default function EventsGrid({ events }) {
                     </CardHeader>
                     <CardContent>
                         <div className="flex space-x-4 text-sm text-gray-100">
-                            <p className="text-xs">{event.created_at}</p>
+                            <p className="text-xs">{event.nice_time}</p>
                         </div>
                     </CardContent>
                     <div className="absolute left-0 bottom-[-.75rem] right-0 opacity-0 hover:opacity-100 transition">

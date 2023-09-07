@@ -29,11 +29,16 @@ class EventController extends BaseController
 
         $event = Event::create($payload);
 
-        foreach($request->topics as $topic) {
+        $topics = $request->topics ?? ["general"];
+
+        foreach($topics as $topic) {
             $topic = $team->topics()->firstOrCreate([
                 'name' => $topic,
                 'slug' => Str::slug($topic),
             ]);
+            if($topic->wasRecentlyCreated) {
+                $topic->update(['description' => 'A topic created by an event']);
+            }
             $event->topics()->attach($topic);
         }
 
