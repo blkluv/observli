@@ -77,6 +77,10 @@ export default {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
+            scale: {
+                98: ".98",
+                99: ".99",
+            },
         },
     },
 

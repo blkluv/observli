@@ -14,12 +14,26 @@ namespace App\Models{
 /**
  * App\Models\Event
  *
- * @property-read \App\Models\Team|null $team
+ * @property int $id
+ * @property int $team_id
+ * @property string $title
+ * @property string|null $message
+ * @property array $context
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Team $team
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
  * @property-read int|null $topics_count
  * @method static \Illuminate\Database\Eloquent\Builder|Event newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Event query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereContext($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Event whereUpdatedAt($value)
  */
 	class Event extends \Eloquent {}
 }
@@ -28,7 +42,7 @@ namespace App\Models{
 /**
  * App\Models\Invitation
  *
- * @property-read \App\Models\Team|null $team
+ * @property-read \App\Models\Team $team
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invitation query()
@@ -46,7 +60,7 @@ namespace App\Models{
  * @property string|null $role
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Team|null $team
+ * @property-read \App\Models\Team $team
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
@@ -68,7 +82,6 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string $name
- * @property bool $is_personal
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
@@ -76,6 +89,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Invitation> $invitations
  * @property-read int|null $invitations_count
  * @property-read \App\Models\User|null $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ * @property-read int|null $tokens_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Topic> $topics
  * @property-read int|null $topics_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
@@ -85,7 +100,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Team whereIsPersonal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Team whereUserId($value)
@@ -99,6 +113,9 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $team_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
@@ -108,7 +125,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Topic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Topic query()
  * @method static \Illuminate\Database\Eloquent\Builder|Topic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Topic whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Topic whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Topic whereTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Topic whereUpdatedAt($value)
  */

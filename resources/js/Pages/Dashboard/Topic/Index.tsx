@@ -7,7 +7,7 @@ import TopicsIndex from "./Partials/TopicsIndex";
 export default function Index({ auth, topics }) {
     return (
         <AuthenticatedLayout topics={topics} user={auth.user}>
-            <Head title="SaasPing" />
+            <Head title="Observli" />
 
             {/* <TopicsIndex topics={topics} /> */}
         </AuthenticatedLayout>

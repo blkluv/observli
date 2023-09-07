@@ -69,7 +69,7 @@ export default function Authenticated({ topics, user, children }) {
                     {data.map((server) => (
                         <div
                             key={server.id}
-                            className="hover:scale-95 cursor-pointer transition w-10 h-10 rounded-xl bg-contain bg-center shadow-lg border border-gray-100/20"
+                            className="hover:scale-98 cursor-pointer transition w-10 h-10 rounded-xl bg-contain bg-center shadow-lg border border-gray-100/20"
                             style={{
                                 backgroundImage: `url(${server.img})`,
                             }}

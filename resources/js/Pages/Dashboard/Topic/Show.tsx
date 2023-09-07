@@ -11,9 +11,9 @@ export default function Show({ auth, events, topic, topics }) {
 
             <div className="flex flex-col">
                 <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 backdrop-blur">
-                    <div className="flex items-center">
-                        <Hash className="mx-2 w-4 h-4 font-semibold text-gray-200" />
-                        <span className="mr-2 font-title text-white whitespace-nowrap">
+                    <div className="flex items-center text-white/90">
+                        <Hash className="mx-2 w-4 h-4" />
+                        <span className="mr-2 whitespace-nowrap">
                             {topic.name}
                         </span>
                     </div>
@@ -31,7 +31,7 @@ export default function Show({ auth, events, topic, topics }) {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="px-3 w-72 h-8 text-sm font-medium placeholder:text-gray-400 bg-dark-800 shadow rounded border border-gray-100/20 focus:ring-white focus:outline-none focus:border-transparent transition"
+                                className="px-3 w-72 h-8 text-sm font-medium placeholder:text-dark-200 bg-dark-800 shadow rounded border border-gray-100/20 focus:ring-white focus:outline-none focus:border-transparent transition"
                             />
                         </div>
                     </div>
