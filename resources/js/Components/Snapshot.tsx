@@ -72,8 +72,8 @@ export function Snapshot() {
                 />
                 <Bar
                     dataKey="total"
-                    fill="#428767"
-                    stroke="#275542"
+                    fill="#84bed2"
+                    stroke="#6495af"
                     radius={[6, 6, 0, 0]}
                 />
             </BarChart>
