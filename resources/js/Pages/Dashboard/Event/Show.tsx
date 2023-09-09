@@ -10,6 +10,15 @@ import {
     CardDescription,
     CardFooter,
 } from "@/Components/shadcn/Card";
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/Components/shadcn/Table";
 import { Play } from "lucide-react";
 
 export default function Show({ auth, event, topics }) {
@@ -18,11 +27,11 @@ export default function Show({ auth, event, topics }) {
             <Head title="Observli" />
 
             <div className="flex flex-col">
-                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 backdrop-blur">
+                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 backdrop-blur drag">
                     <div className="flex items-center text-white/90">
                         <ArrowLeft
                             onClick={() => history.back()}
-                            className="mx-2 w-4 h-4 cursor-pointer"
+                            className="mx-2 w-4 h-4 cursor-pointer no-drag"
                         />
                         <span className="mr-2 whitespace-nowrap">
                             {event.id}
@@ -63,7 +72,22 @@ export default function Show({ auth, event, topics }) {
                                 </div>
                             </CardHeader>
                             <CardContent className="space-y-3">
-                                <div className="flex items-center justify-between"></div>
+                                <Table>
+                                    <TableBody>
+                                        {Object.keys(event.context).map(
+                                            (key) => (
+                                                <TableRow key={key}>
+                                                    <TableCell className="text-white/90 font-medium w-[120px]">
+                                                        {key}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {event.context[key]}
+                                                    </TableCell>
+                                                </TableRow>
+                                            )
+                                        )}
+                                    </TableBody>
+                                </Table>
                             </CardContent>
                             <CardFooter className="flex items-center justify-between">
                                 <div className="flex space-x-4 text-sm text-dark-100">

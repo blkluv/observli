@@ -142,7 +142,7 @@ export default function AddMembers({ topic }) {
                         </div>
                     ) : (
                         <p className="text-sm text-dark-100">
-                            Select users to add to this thread.
+                            Select users to add to this topic
                         </p>
                     )}
                     <button
