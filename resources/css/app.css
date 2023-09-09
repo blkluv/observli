@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  -webkit-user-select: none; 
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html.todesktop .drag {
+  -webkit-app-region: drag;
+}
+html.todesktop .no-drag {
+  -webkit-app-region: no-drag;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

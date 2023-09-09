@@ -19,12 +19,12 @@ export default function Dashboard({ auth, events, topics }) {
             <Head title="Dashboard" />
 
             <div className="flex flex-col">
-                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700">
+                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 drag">
                     <div className="flex items-center text-white/90">
                         <Gauge className="mx-2 w-4 h-4" />
                         <span className="whitespace-nowrap">Dashboard</span>
                     </div>
-                    <div className="hidden items-center ml-auto md:flex">
+                    <div className="hidden items-center ml-auto md:flex no-drag">
                         <AddMembers />
                     </div>
                 </div>
