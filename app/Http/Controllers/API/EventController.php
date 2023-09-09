@@ -44,4 +44,13 @@ class EventController extends BaseController
 
         return response()->json(EventData::from($event), 201);
     }
+
+    public function show(Request $request, $id)
+    {
+        $team = $request->user();
+
+        $event = Event::findOrFail($id);
+
+        return response()->json(EventData::from($event));
+    }
 }

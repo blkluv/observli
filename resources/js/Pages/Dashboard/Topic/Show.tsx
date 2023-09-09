@@ -17,15 +17,12 @@ export default function Show({ auth, events, topic, topics }) {
                             {topic.name}
                         </span>
                     </div>
-
-                    {true && (
-                        <>
-                            <div className="hidden mx-2 w-px h-6 bg-white/[.06] md:block"></div>
-                            <div className="hidden mx-2 text-sm font-medium text-gray-200 truncate md:block">
-                                {topic.description}
-                            </div>
-                        </>
-                    )}
+                    <>
+                        <div className="hidden mx-2 w-px h-6 bg-white/[.06] md:block"></div>
+                        <div className="hidden mx-2 text-sm font-medium text-gray-200 truncate md:block">
+                            {topic.description}
+                        </div>
+                    </>
                     <div className="hidden items-center ml-auto md:flex">
                         <div className="relative mx-2">
                             <input

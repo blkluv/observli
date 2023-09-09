@@ -4,6 +4,7 @@ import { Toaster } from "@/Components/shadcn/Toaster";
 
 import { Hash, MoreVertical, Plus, UserPlus2 } from "lucide-react";
 import { classNames } from "@/Util";
+import AddMembers from "@/Dialogs/AddMembers";
 
 const data = [
     {
@@ -80,7 +81,6 @@ export default function Authenticated({ topics, user, children }) {
                     </div>
                 </div>
             </div>
-
             <div className="flex-grow">
                 <div className="flex h-full">
                     <div className="hidden flex-col w-60 bg-dark-800 md:flex h-full border-r border-gray-500/20 px-2">
@@ -121,7 +121,8 @@ export default function Authenticated({ topics, user, children }) {
                                             {topic.name}
                                         </Link>
                                         {topic.name !== "general" && (
-                                            <UserPlus2 className="transition ml-auto w-4 h-4 text-gray-200 hover:text-gray-100 opacity-0 group-hover:opacity-100" />
+                                            // <UserPlus2 className="transition ml-auto w-4 h-4 text-gray-200 hover:text-gray-100 opacity-0 group-hover:opacity-100" />
+                                            <AddMembers topic={topic} />
                                         )}
                                     </div>
                                 ))}

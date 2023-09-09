@@ -33,7 +33,7 @@ class EventData extends Data
             'title' => $event->title,
             'message' => $event->message,
             'context' => $event->context,
-            'topics' => $topics->map(fn ($topic) => $topic->name)->all(),
+            'topics' => $topics->map(fn ($topic) => ['name' => $topic->name, 'id' => (new HashidManager())->encode($topic->id)])->all(),
             'time' => $event->created_at->timestamp,
             'nice_time' => $event->created_at->diffForHumans(),
         ]);

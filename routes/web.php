@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
+    Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

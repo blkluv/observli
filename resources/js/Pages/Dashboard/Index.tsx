@@ -10,12 +10,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/Components/shadcn/Card";
-import { Gauge, UserPlus2 } from "lucide-react";
-import AddMembers from "@/Dialogs/AddMembers";
+import { Gauge } from "lucide-react";
+import AddMembers from "@/Dialogs/InviteMembers";
 
 export default function Dashboard({ auth, events, topics }) {
-    const [showAddMembersModal, setShowAddMembersModal] = React.useState(false);
-    const closeModal = () => setShowAddMembersModal(false);
     return (
         <AuthenticatedLayout topics={topics} user={auth.user}>
             <Head title="Dashboard" />
