@@ -22,7 +22,7 @@ class EventController extends BaseController
 
         $payload = [
             'title' => $request->title,
-            'context' => $request->context,
+            'context' => (object) $request->context,
             'message' => $request->message ?? null,
             'team_id' => $team->id,
         ];

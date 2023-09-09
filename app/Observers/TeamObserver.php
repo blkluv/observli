@@ -23,7 +23,6 @@ class TeamObserver
         $event = $team->events()->create([
             'title' => 'Welcome to your team!',
             'message' => 'This is your team\'s first event',
-            'context' => [],
         ]);
         $event->topics()->attach($topic);
     }

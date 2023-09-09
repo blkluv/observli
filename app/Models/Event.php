@@ -15,7 +15,7 @@ class Event extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'context' => 'array'
+        'context' => 'object'
     ];
 
     /**
@@ -29,6 +29,16 @@ class Event extends Model
         'subtitle',
         'title'
     ];
+
+
+    protected static function booted()
+    {
+        static::creating(function ($event) {
+            if ($event->context === null) {
+                $event->context = (object) [];
+            }
+        });
+    }
 
     public function topics()
     {

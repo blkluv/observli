@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Objects\HashidManager;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use stdClass;
 
 class EventData extends Data
 {
@@ -14,7 +15,7 @@ class EventData extends Data
         public readonly string $team_id,
         public readonly string $title,
         public readonly ?string $message,
-        public readonly array $context,
+        public readonly stdClass $context,
         /** @var DataCollection<TopicData> */
         public readonly array $topics,
         public readonly int $time,
@@ -27,12 +28,13 @@ class EventData extends Data
     {
         $context = $event->context;
         $topics = $event->topics;
+
         return self::from([
             'id' =>  (new HashidManager())->encode($event->id),
             'team_id' => (new HashidManager())->encode($event->team_id),
             'title' => $event->title,
             'message' => $event->message,
-            'context' => $event->context,
+            'context' => $context,
             'topics' => $topics->map(fn ($topic) => ['name' => $topic->name, 'id' => (new HashidManager())->encode($topic->id)])->all(),
             'time' => $event->created_at->timestamp,
             'nice_time' => $event->created_at->diffForHumans(),
