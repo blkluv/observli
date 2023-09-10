@@ -1,10 +1,12 @@
-import React from "react";
-import { Link, usePage } from "@inertiajs/react";
+import React, { useEffect } from "react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { Toaster } from "@/Components/shadcn/Toaster";
+import { useToast } from "@/Components/shadcn/Toast/use-toast";
 
 import { Hash, MoreVertical, Plus, UserPlus2 } from "lucide-react";
 import { classNames } from "@/Util";
 import AddMembers from "@/Dialogs/AddMembers";
+import { ToastAction } from "@/Components/shadcn/Toast/Toast";
 
 const data = [
     {
@@ -26,10 +28,46 @@ const data = [
 
 export default function Authenticated({ topics, user, children }) {
     const { url } = usePage();
+    const { toast } = useToast();
+
+    //@ts-ignore
+    const echo: any = window.Echo;
 
     const topicIsActive = (topic) => {
         return url === `/t/${topic.id}`;
     };
+
+    useEffect(() => {
+        echo.private(`App.Models.User.${user.id}`).notification(
+            (notification) => {}
+        );
+        echo.private(`App.Models.Team.${user.current_team_id}`).notification(
+            (notification) => {
+                if (notification.type === "App\\Notifications\\EventCreated") {
+                    toast({
+                        title: "New event received",
+                        description: notification.title,
+                        action: (
+                            <ToastAction
+                                onClick={() =>
+                                    router.visit(
+                                        route(
+                                            "events.show",
+                                            notification.event_id
+                                        )
+                                    )
+                                }
+                                altText="View"
+                            >
+                                View
+                            </ToastAction>
+                        ),
+                    });
+                }
+            }
+        );
+    }, []);
+
     return (
         <div className="flex h-screen text-gray-100">
             <Toaster />

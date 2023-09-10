@@ -2,10 +2,9 @@
 
 namespace App\Actions;
 
-use App\Actions\Contracts\RememberOTPContract;
 use Illuminate\Support\Facades\Cache;
 
-final class RememberOTP implements RememberOTPContract
+class RememberOTP
 {
     public function handle(string $ip, string $otp, string $email): void
     {

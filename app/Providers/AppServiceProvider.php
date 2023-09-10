@@ -2,18 +2,13 @@
 
 namespace App\Providers;
 
-use App\Actions\Contracts\GenerateOTPContract;
-use App\Actions\Contracts\OTPGeneratorContract;
-use App\Actions\Contracts\RememberOTPContract;
-use App\Actions\Contracts\SendOTPNotificationContract;
-use App\Actions\GenerateOTP;
-use App\Actions\RememberOTP;
-use App\Actions\SendOTPNotification;
 use App\Models\Event;
 use App\Models\Team;
 use App\Models\User;
-use App\Objects\OTPGenerator;
+use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
+use Illuminate\Broadcasting\BroadcastManager;
 use Illuminate\Support\ServiceProvider;
+use Pusher\Pusher;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,23 +17,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(
-            OTPGeneratorContract::class,
-            OTPGenerator::class
-        );
-        $this->app->bind(
-            GenerateOTPContract::class,
-            GenerateOTP::class
-        );
-        $this->app->bind(
-            RememberOTPContract::class,
-            RememberOTP::class
-        );
-        $this->app->bind(
-            SendOTPNotificationContract::class,
-            SendOTPNotification::class
-        );
-
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
@@ -53,5 +31,18 @@ class AppServiceProvider extends ServiceProvider
         Event::observe(\App\Observers\EventObserver::class);
         Team::observe(\App\Observers\TeamObserver::class);
         User::observe(\App\Observers\UserObserver::class);
+
+        if($this->app->environment(('local'))) {
+            app(BroadcastManager::class)->extend('soketi', function () {
+                $pusher = new Pusher(
+                    config('broadcasting.connections.pusher.key'),
+                    config('broadcasting.connections.pusher.secret'),
+                    config('broadcasting.connections.pusher.app_id'),
+                    config('broadcasting.connections.pusher.options'),
+                    new \GuzzleHttp\Client(['verify' => false]),
+                );
+                return new PusherBroadcaster($pusher);
+            });
+        }
     }
 }

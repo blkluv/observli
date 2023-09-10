@@ -57,9 +57,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'domain' => env('APP_DOMAIN', 'saasping.com'),
+    'domain' => env('APP_DOMAIN', 'observli.com'),
 
-    'api_domain' => env('API_DOMAIN', 'api.saasping.com'),
+    'api_domain' => env('API_DOMAIN', 'api.observli.com'),
 
     'asset_url' => env('ASSET_URL'),
 

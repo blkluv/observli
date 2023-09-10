@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Team;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::routes();
+Broadcast::channel('App.Models.User.{user_id}', function ($user, $user_id) {
+    return (int) $user->id === (int) $user_id;
+});
+Broadcast::channel('App.Models.Team.{team_id}', function ($user, $team_id) {
+    $team = Team::findOrFail($team_id);
+    return $user->belongsToTeam($team);
 });

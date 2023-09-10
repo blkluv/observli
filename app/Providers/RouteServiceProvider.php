@@ -38,6 +38,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->group(base_path('routes/web.php'));
 
+            Route::domain(config('app.domain'))
+                ->middleware('web')
+                ->group(base_path('routes/channels.php'));
         });
 
         Route::bind('id', function ($value) {

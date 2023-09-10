@@ -2,11 +2,10 @@
 
 namespace App\Actions;
 
-use App\Actions\Contracts\SendOTPNotificationContract;
 use App\Notifications\OneTimePassword;
 use Illuminate\Support\Facades\Notification;
 
-final class SendOTPNotification implements SendOTPNotificationContract
+class SendOTPNotification
 {
     public function handle(string $otp, string $email, bool $is_registration): void
     {

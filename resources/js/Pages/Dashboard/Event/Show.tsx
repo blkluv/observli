@@ -13,10 +13,7 @@ import {
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
-    TableHead,
-    TableHeader,
     TableRow,
 } from "@/Components/shadcn/Table";
 import { Play } from "lucide-react";
@@ -96,6 +93,7 @@ export default function Show({ auth, event, topics }) {
                                 <div className="flex space-x-4 text-sm text-dark-100">
                                     {event.topics.map((topic) => (
                                         <Link
+                                            key={topic.id}
                                             href={`/t/${topic.id}`}
                                             className="border-wedgewood-500/20 rounded text-xs hover:text-wedgewood-500 transition"
                                         >
