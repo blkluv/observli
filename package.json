@@ -40,6 +40,7 @@
         "@radix-ui/react-toast": "^1.1.4",
         "@remotion/google-fonts": "^4.0.29",
         "@tanstack/react-table": "^8.9.1",
+        "@todesktop/client-core": "^1.1.6",
         "class-variance-authority": "^0.6.0",
         "clsx": "^1.2.1",
         "cmdk": "^0.2.0",
