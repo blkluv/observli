@@ -15,6 +15,7 @@ return new class () extends Migration {
             $table->foreignId('user_id')->index();
             $table->string('name');
             $table->string('domain')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

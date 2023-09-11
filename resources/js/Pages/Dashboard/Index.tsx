@@ -90,9 +90,12 @@ export default function Dashboard({ auth, events, topics }) {
                                     <CardContent>
                                         <div className="space-y-4">
                                             {events.map((event) => (
-                                                <div className="flex items-center justify-between overflow-hidden border-b border-dark-200/20 pb-2 last:border-0">
+                                                <div
+                                                    key={event.id}
+                                                    className="flex items-center justify-between overflow-hidden border-b border-dark-200/20 pb-2 last:border-0"
+                                                >
                                                     <div className="space-y-2">
-                                                        <p className="text-sm font-medium leading-none">
+                                                        <p className="text-sm font-medium leading-none line-clamp-1">
                                                             {event.title}
                                                         </p>
                                                         <p className="text-xs text-dark-100 text-ellipsis">
@@ -101,7 +104,7 @@ export default function Dashboard({ auth, events, topics }) {
                                                     </div>
                                                     <Link
                                                         href={`/e/${event.id}`}
-                                                        className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                                                        className="ml-4 text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
                                                     >
                                                         <ArrowRight className="w-4 h-4" />
                                                     </Link>

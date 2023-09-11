@@ -120,7 +120,7 @@ export default function Authenticated({ topics, user, children }) {
                     <div className="flex h-full">
                         <div className="hidden flex-col w-60 bg-dark-800 md:flex h-full border-r border-gray-500/20 px-2">
                             <div className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white shadow-sm transition drag">
-                                Figma
+                                {user.current_workspace.name}
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="ml-auto opacity-80 no-drag focus:outline-none focus:ring-0 focus:border-0">
                                         <MoreVertical className="w-[18px] h-[18px]" />

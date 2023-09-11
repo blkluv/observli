@@ -25,7 +25,7 @@ export default function Register() {
     }
 
     useEffect(() => {
-        reset("email");
+        reset();
     }, []);
 
     return (

@@ -55,7 +55,7 @@ export default function Show({ auth, event, topics }) {
                                             <h3 className="text-xl">
                                                 {event.title}
                                             </h3>
-                                            <p className="font-normal text-sm mt-2 text-dark-100">
+                                            <p className="font-normal text-sm mt-2 text-white/75">
                                                 {event.subtitle}
                                             </p>
                                         </div>

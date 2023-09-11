@@ -14,9 +14,11 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['workspace_id', 'slug']);
         });
     }
 

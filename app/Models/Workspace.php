@@ -18,7 +18,7 @@ class Workspace extends Model
      * @var array<int, string>
      */
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'domain', 'avatar', 'user_id'];
 
     /**
      * Get all of the forms for the workspace.

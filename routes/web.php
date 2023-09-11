@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
+
+    Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
