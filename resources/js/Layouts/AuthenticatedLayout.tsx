@@ -19,6 +19,7 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@/Components/shadcn/DropdownMenu";
+import CreateTopic from "@/Dialogs/CreateTopic";
 
 const data = [
     {
@@ -216,10 +217,7 @@ export default function Authenticated({ topics, user, children }) {
                                         </div>
                                     ))}
                                     <div className="flex items-center px-2 mx-2 py-1 rounded group relative transition">
-                                        <p className="cursor-pointer inline-flex items-center group-hover:text-white text-dark-200">
-                                            <Plus className="mr-1.5 w-4 h-4" />
-                                            Create topic
-                                        </p>
+                                        <CreateTopic />
                                     </div>
                                 </div>
                             </div>
