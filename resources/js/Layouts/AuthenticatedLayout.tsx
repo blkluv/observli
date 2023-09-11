@@ -9,6 +9,16 @@ import { classNames } from "@/Util";
 import AddMembers from "@/Dialogs/AddMembers";
 import { ToastAction } from "@/Components/shadcn/Toast/Toast";
 import { isDesktopApp } from "@todesktop/client-core/platform/todesktop";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuTrigger,
+} from "@/Components/shadcn/DropdownMenu";
 
 const data = [
     {
@@ -112,9 +122,60 @@ export default function Authenticated({ topics, user, children }) {
                 <div className="flex-1">
                     <div className="flex h-full">
                         <div className="hidden flex-col w-60 bg-dark-800 md:flex h-full border-r border-gray-500/20 px-2">
-                            <button className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white hover:bg-gray-550/[0.16] shadow-sm transition drag">
+                            <button className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white shadow-sm transition drag">
                                 Figma
-                                <MoreVertical className="ml-auto w-[18px] h-[18px] opacity-80 no-drag" />
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger className="ml-auto  opacity-80 no-drag">
+                                        <MoreVertical className="w-[18px] h-[18px]" />
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent
+                                        className="w-56"
+                                        align="end"
+                                        forceMount
+                                    >
+                                        <DropdownMenuLabel className="font-normal">
+                                            <div className="flex flex-col space-y-1">
+                                                <p className="text-sm font-medium leading-none">
+                                                    {user.name}
+                                                </p>
+                                                <p className="text-xs leading-none text-dark-100">
+                                                    {user.email}
+                                                </p>
+                                            </div>
+                                        </DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuItem>
+                                                Profile
+                                                <DropdownMenuShortcut>
+                                                    ⇧⌘P
+                                                </DropdownMenuShortcut>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                Billing
+                                                <DropdownMenuShortcut>
+                                                    ⇧⌘B
+                                                </DropdownMenuShortcut>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                Settings
+                                                <DropdownMenuShortcut>
+                                                    ⌘S
+                                                </DropdownMenuShortcut>
+                                            </DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem
+                                            onClick={() =>
+                                                router.visit(route("logout"), {
+                                                    method: "post",
+                                                })
+                                            }
+                                        >
+                                            Log out
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
                             </button>
                             <div className="overflow-y-scroll flex-1 pt-3 space-y-[21px] font-medium text-gray-300 scrollbar-hide">
                                 <div>

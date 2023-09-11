@@ -4,11 +4,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { Snapshot } from "@/Components/Snapshot";
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/Components/shadcn/Avatar";
-import {
     Card,
     CardContent,
     CardHeader,
@@ -16,7 +11,6 @@ import {
 } from "@/Components/shadcn/Card";
 import { ArrowRight, Gauge } from "lucide-react";
 import AddMembers from "@/Dialogs/InviteMembers";
-import { Reachability } from "@/Components/Reachability";
 
 export default function Dashboard({ auth, events, topics }) {
     return (
