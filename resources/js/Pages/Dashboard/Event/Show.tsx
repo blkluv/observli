@@ -24,7 +24,7 @@ export default function Show({ auth, event, topics }) {
             <Head title="Observli" />
 
             <div className="flex flex-col">
-                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 backdrop-blur drag">
+                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-900/20 backdrop-blur drag">
                     <div className="flex items-center text-white/90">
                         <ArrowLeft
                             onClick={() => history.back()}

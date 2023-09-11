@@ -13,6 +13,7 @@ class DashboardController extends Controller
     {
         $events = $request->user()->currentTeam->events()
             ->latest()
+            ->take(5)
             ->get();
 
         $topics = $request->user()->currentTeam->topics()->get();

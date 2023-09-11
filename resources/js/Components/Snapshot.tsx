@@ -42,14 +42,6 @@ const data = [
         name: "Oct",
         total: Math.floor(Math.random() * 5000) + 1000,
     },
-    {
-        name: "Nov",
-        total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-        name: "Dec",
-        total: Math.floor(Math.random() * 5000) + 6000,
-    },
 ];
 
 export function Snapshot() {

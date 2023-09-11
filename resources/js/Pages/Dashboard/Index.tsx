@@ -1,17 +1,22 @@
 import React from "react";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { Snapshot } from "@/Components/Snapshot";
-
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/Components/shadcn/Avatar";
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
 } from "@/Components/shadcn/Card";
-import { Gauge } from "lucide-react";
+import { ArrowRight, Gauge } from "lucide-react";
 import AddMembers from "@/Dialogs/InviteMembers";
+import { Reachability } from "@/Components/Reachability";
 
 export default function Dashboard({ auth, events, topics }) {
     return (
@@ -19,7 +24,7 @@ export default function Dashboard({ auth, events, topics }) {
             <Head title="Dashboard" />
 
             <div className="flex flex-col">
-                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-700 drag">
+                <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-900/20 backdrop-blur drag">
                     <div className="flex items-center text-white/90">
                         <Gauge className="mx-2 w-4 h-4" />
                         <span className="whitespace-nowrap">Dashboard</span>
@@ -31,7 +36,7 @@ export default function Dashboard({ auth, events, topics }) {
                 <div className="overflow-y-scroll flex-1">
                     <div className="flex-1 space-y-4 p-8">
                         <div className="space-y-4">
-                            <div className="grid gap-4 grid-cols-1 lg:grid-cols-3">
+                            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
@@ -62,7 +67,7 @@ export default function Dashboard({ auth, events, topics }) {
                                         </p>
                                     </CardContent>
                                 </Card>
-                                <Card>
+                                <Card className="hidden lg:block">
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
                                             Reachability
@@ -71,8 +76,8 @@ export default function Dashboard({ auth, events, topics }) {
                                     <CardContent></CardContent>
                                 </Card>
                             </div>
-                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-                                <Card className="col-span-8">
+                            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-12">
+                                <Card className="col-span-12 md:col-span-8">
                                     <CardHeader>
                                         <CardTitle className="text-sm font-medium">
                                             Snapshot
@@ -82,14 +87,33 @@ export default function Dashboard({ auth, events, topics }) {
                                         <Snapshot />
                                     </CardContent>
                                 </Card>
-                                <Card className="col-span-4">
+                                <Card className="hidden lg:block col-span-4">
                                     <CardHeader>
                                         <CardTitle className="text-sm font-medium">
                                             Feed
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        {/* <RecentSales /> */}
+                                        <div className="space-y-4">
+                                            {events.map((event) => (
+                                                <div className="flex items-center justify-between overflow-hidden border-b border-dark-200/20 pb-2 last:border-0">
+                                                    <div className="space-y-2">
+                                                        <p className="text-sm font-medium leading-none">
+                                                            {event.title}
+                                                        </p>
+                                                        <p className="text-xs text-dark-100 text-ellipsis">
+                                                            {event.nice_time}
+                                                        </p>
+                                                    </div>
+                                                    <Link
+                                                        href={`/e/${event.id}`}
+                                                        className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                                                    >
+                                                        <ArrowRight className="w-4 h-4" />
+                                                    </Link>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </div>
