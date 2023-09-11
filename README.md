@@ -32,7 +32,6 @@ Observli is an open-source tool for event logging and application monitoring. It
 
 - **Familiar Interface**: Observli is designed to be familiar to anyone who has used Slack, Discord or Linear. We believe that this familiarity will make Observli easy to use and accessible to everyone.
   <br/>
-
 - **Event Tracking**: Track events from your applications and services using our simple HTTP API or SDKs. Tag them via the use of topics which can be used to better segregate and analyse incoming data.
   <br/>
 - **Domain Reachability**: Monitor the reachability of your domain continuously during the day. Receive alerts when your domain is unreachable or when they are slow to respond.
@@ -40,7 +39,7 @@ Observli is an open-source tool for event logging and application monitoring. It
 - **Event Actions**: Create actions that can be executed when an event is received or manually triggered via the UI. Actions can be used to create workflows that are powered by the events in your application.
 <br/>
 - **Unlimited Workspaces**: Are you a habitual project starter? Create as many workspaces as you need to monitor all of your applications and services.
-
+  
 ## Getting Started
 
 Coming soon
