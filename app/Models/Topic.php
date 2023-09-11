@@ -9,15 +9,15 @@ class Topic extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'description', 'team_id'];
+    protected $fillable = ['name', 'slug', 'description', 'workspace_id'];
 
     public function events()
     {
         return $this->belongsToMany(Event::class);
     }
 
-    public function team()
+    public function workspace()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Workspace::class);
     }
 }

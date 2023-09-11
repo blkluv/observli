@@ -11,12 +11,12 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $events = $request->user()->currentTeam->events()
+        $events = $request->user()->currentWorkspace->events()
             ->latest()
             ->take(5)
             ->get();
 
-        $topics = $request->user()->currentTeam->topics()->get();
+        $topics = $request->user()->currentWorkspace->topics()->get();
 
         return Inertia::render('Dashboard/Index', [
             'events' => EventData::collection($events),

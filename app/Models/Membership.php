@@ -11,7 +11,7 @@ class Membership extends Pivot
      *
      * @var string
      */
-    protected $table = 'team_user';
+    protected $table = 'workspace_user';
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +20,13 @@ class Membership extends Pivot
      */
     protected $fillable = [
         'role',
-        'team_id',
+        'workspace_id',
         'user_id',
     ];
 
-    public function team()
+    public function workspace()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Workspace::class);
     }
 
     public function user()

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Team;
+use App\Models\Workspace;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -18,7 +18,7 @@ Broadcast::routes();
 Broadcast::channel('App.Models.User.{user_id}', function ($user, $user_id) {
     return (int) $user->id === (int) $user_id;
 });
-Broadcast::channel('App.Models.Team.{team_id}', function ($user, $team_id) {
-    $team = Team::findOrFail($team_id);
-    return $user->belongsToTeam($team);
+Broadcast::channel('App.Models.Workspace.{workspace_id}', function ($user, $workspace_id) {
+    $workspace = Workspace::findOrFail($workspace_id);
+    return $user->belongsToWorkspace($workspace);
 });

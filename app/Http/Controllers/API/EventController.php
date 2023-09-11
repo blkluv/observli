@@ -11,20 +11,20 @@ class EventController extends BaseController
 {
     public function index(Request $request)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
-        return response()->json(EventData::collection($team->events));
+        return response()->json(EventData::collection($workspace->events));
     }
 
     public function store(Request $request)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
         $payload = [
             'title' => $request->title,
             'context' => (object) $request->context,
             'message' => $request->message ?? null,
-            'team_id' => $team->id,
+            'workspace_id' => $workspace->id,
         ];
 
         $event = Event::create($payload);
@@ -32,7 +32,7 @@ class EventController extends BaseController
         $topics = $request->topics ?? ["general"];
 
         foreach($topics as $topic) {
-            $topic = $team->topics()->firstOrCreate([
+            $topic = $workspace->topics()->firstOrCreate([
                 'name' => $topic,
                 'slug' => Str::slug($topic),
             ]);
@@ -47,7 +47,7 @@ class EventController extends BaseController
 
     public function show(Request $request, $id)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
         $event = Event::findOrFail($id);
 

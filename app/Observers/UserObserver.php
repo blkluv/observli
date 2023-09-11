@@ -8,9 +8,9 @@ class UserObserver
 {
     public function created(User $user): void
     {
-        $user->ownedTeams()->create([
+        $user->ownedWorkspaces()->create([
             'name' => "My Workspace",
         ]);
-        $user->switchTeam($user->ownedTeams()->first());
+        $user->switchWorkspace($user->ownedWorkspaces()->first());
     }
 }

@@ -35,14 +35,12 @@ export default function Show({ auth, event, topics }) {
                         </span>
                     </div>
 
-                    {true && (
-                        <>
-                            <div className="hidden mx-2 w-px h-6 bg-white/[.06] md:block"></div>
-                            <div className="hidden mx-2 text-sm font-medium text-gray-200 truncate md:block">
-                                {event.title}
-                            </div>
-                        </>
-                    )}
+                    <>
+                        <div className="hidden mx-2 w-px h-6 bg-white/[.06] md:block"></div>
+                        <div className="hidden mx-2 text-sm font-medium text-gray-200 truncate md:block">
+                            {event.title}
+                        </div>
+                    </>
                     <div className="hidden items-center ml-auto md:flex">
                         <div className="relative mx-2"></div>
                     </div>
@@ -53,9 +51,14 @@ export default function Show({ auth, event, topics }) {
                             <CardHeader className="space-y-0">
                                 <div className="space-y-3">
                                     <CardTitle className="text-white/90 flex items-center justify-between">
-                                        <span className="text-xl">
-                                            {event.title}
-                                        </span>
+                                        <div className="flex flex-col">
+                                            <h3 className="text-xl">
+                                                {event.title}
+                                            </h3>
+                                            <p className="font-normal text-sm mt-2 text-dark-100">
+                                                {event.subtitle}
+                                            </p>
+                                        </div>
                                         <button
                                             disabled={false}
                                             className="flex items-center justify-center w-10 h-10 transition bg-dark-900 border border-gray-500/20 rounded text-dark-100 hover:border-wedgewood-500 hover:text-wedgewood-500"

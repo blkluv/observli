@@ -20,6 +20,7 @@ import {
     DropdownMenuTrigger,
 } from "@/Components/shadcn/DropdownMenu";
 import CreateTopic from "@/Dialogs/CreateTopic";
+import CreateWorkspace from "@/Dialogs/CreateWorkspace";
 
 const data = [
     {
@@ -54,31 +55,28 @@ export default function Authenticated({ topics, user, children }) {
         echo.private(`App.Models.User.${user.id}`).notification(
             (notification) => {}
         );
-        echo.private(`App.Models.Team.${user.current_team_id}`).notification(
-            (notification) => {
-                if (notification.type === "App\\Notifications\\EventCreated") {
-                    toast({
-                        title: "New event received",
-                        description: notification.title,
-                        action: (
-                            <ToastAction
-                                onClick={() =>
-                                    router.visit(
-                                        route(
-                                            "events.show",
-                                            notification.event_id
-                                        )
-                                    )
-                                }
-                                altText="View"
-                            >
-                                View
-                            </ToastAction>
-                        ),
-                    });
-                }
+        echo.private(
+            `App.Models.Workspace.${user.current_workspace_id}`
+        ).notification((notification) => {
+            if (notification.type === "App\\Notifications\\EventCreated") {
+                toast({
+                    title: "New event received",
+                    description: notification.title,
+                    action: (
+                        <ToastAction
+                            onClick={() =>
+                                router.visit(
+                                    route("events.show", notification.event_id)
+                                )
+                            }
+                            altText="View"
+                        >
+                            View
+                        </ToastAction>
+                    ),
+                });
             }
-        );
+        });
     }, []);
 
     return (
@@ -115,18 +113,16 @@ export default function Authenticated({ topics, user, children }) {
                                 }}
                             ></div>
                         ))}
-                        <div className="flex items-center justify-center hover:scale-95 cursor-pointer transition w-10 h-10 rounded-xl bg-dark-500/20 shadow-lg border border-gray-100/20">
-                            <Plus className="w-4 h-4" />
-                        </div>
+                        <CreateWorkspace />
                     </div>
                 </div>
                 <div className="flex-1">
                     <div className="flex h-full">
                         <div className="hidden flex-col w-60 bg-dark-800 md:flex h-full border-r border-gray-500/20 px-2">
-                            <button className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white shadow-sm transition drag">
+                            <div className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white shadow-sm transition drag">
                                 Figma
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger className="ml-auto  opacity-80 no-drag">
+                                    <DropdownMenuTrigger className="ml-auto opacity-80 no-drag focus:outline-none focus:ring-0 focus:border-0">
                                         <MoreVertical className="w-[18px] h-[18px]" />
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent
@@ -177,7 +173,7 @@ export default function Authenticated({ topics, user, children }) {
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>
-                            </button>
+                            </div>
                             <div className="overflow-y-scroll flex-1 pt-3 space-y-[21px] font-medium text-gray-300 scrollbar-hide">
                                 <div>
                                     <div>
@@ -211,7 +207,6 @@ export default function Authenticated({ topics, user, children }) {
                                                 {topic.name}
                                             </Link>
                                             {topic.name !== "general" && (
-                                                // <UserPlus2 className="transition ml-auto w-4 h-4 text-gray-200 hover:text-gray-100 opacity-0 group-hover:opacity-100" />
                                                 <AddMembers topic={topic} />
                                             )}
                                         </div>

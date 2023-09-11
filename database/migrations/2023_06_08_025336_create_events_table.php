@@ -12,9 +12,9 @@ return new class () extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('message')->nullable();
+            $table->string('subtitle')->nullable();
             $table->json('context');
             $table->timestamps();
         });

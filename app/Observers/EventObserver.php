@@ -9,6 +9,6 @@ class EventObserver
 {
     public function created(Event $event)
     {
-        $event->team->notify(new EventCreated($event));
+        $event->workspace->notify(new EventCreated($event));
     }
 }

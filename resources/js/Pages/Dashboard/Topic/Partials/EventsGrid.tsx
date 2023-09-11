@@ -18,7 +18,9 @@ export default function EventsGrid({ events }) {
                         <CardHeader className="space-y-0">
                             <div className="space-y-3">
                                 <CardTitle className="text-white/90 flex items-center justify-between">
-                                    <span>{event.title}</span>
+                                    <span className="text-ellipsis mr-2 line-clamp-1">
+                                        {event.title}
+                                    </span>
                                     <button
                                         disabled={false}
                                         className="flex items-center justify-center w-7 h-7 transition bg-dark-900 border border-gray-500/20 rounded text-dark-100 hover:border-wedgewood-500 hover:text-wedgewood-500"

@@ -25,12 +25,12 @@ class Invitation extends Model
     ];
 
     /**
-     * Get the team that the invitation belongs to.
+     * Get the workspace that the invitation belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function team()
+    public function workspace()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Workspace::class);
     }
 }

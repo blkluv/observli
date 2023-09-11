@@ -24,7 +24,7 @@ class Event extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'team_id',
+        'workspace_id',
         'context',
         'subtitle',
         'title'
@@ -45,8 +45,8 @@ class Event extends Model
         return $this->belongsToMany(Topic::class);
     }
 
-    public function team()
+    public function workspace()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Workspace::class);
     }
 }

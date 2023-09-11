@@ -12,9 +12,9 @@ class EventData extends Data
 {
     public function __construct(
         public readonly string $id,
-        public readonly string $team_id,
+        public readonly string $workspace_id,
         public readonly string $title,
-        public readonly ?string $message,
+        public readonly ?string $subtitle,
         public readonly stdClass $context,
         /** @var DataCollection<TopicData> */
         public readonly array $topics,
@@ -31,9 +31,9 @@ class EventData extends Data
 
         return self::from([
             'id' =>  (new HashidManager())->encode($event->id),
-            'team_id' => (new HashidManager())->encode($event->team_id),
+            'workspace_id' => (new HashidManager())->encode($event->workspace_id),
             'title' => $event->title,
-            'message' => $event->message,
+            'subtitle' => $event->subtitle,
             'context' => $context,
             'topics' => $topics->map(fn ($topic) => ['name' => $topic->name, 'id' => (new HashidManager())->encode($topic->id)])->all(),
             'time' => $event->created_at->timestamp,

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Event;
-use App\Models\Team;
+use App\Models\Workspace;
 use App\Models\User;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Broadcasting\BroadcastManager;
@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::observe(\App\Observers\EventObserver::class);
-        Team::observe(\App\Observers\TeamObserver::class);
+        Workspace::observe(\App\Observers\WorkspaceObserver::class);
         User::observe(\App\Observers\UserObserver::class);
 
         if($this->app->environment(('local'))) {

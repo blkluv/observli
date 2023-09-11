@@ -10,16 +10,16 @@ class TopicController extends Controller
 {
     public function index(Request $request)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
-        return response()->json($team->topics);
+        return response()->json($workspace->topics);
     }
 
     public function store(Request $request)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
-        $topic = $team->topics()->firstOrCreate([
+        $topic = $workspace->topics()->firstOrCreate([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);
@@ -29,9 +29,9 @@ class TopicController extends Controller
 
     public function events(Request $request, $topic)
     {
-        $team = $request->user();
+        $workspace = $request->user();
 
-        $topic = $team->topics()->where('slug', $topic)->firstOrFail();
+        $topic = $workspace->topics()->where('slug', $topic)->firstOrFail();
 
         return response()->json($topic->events);
     }

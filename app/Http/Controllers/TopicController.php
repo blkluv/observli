@@ -6,7 +6,6 @@ use App\Data\EventData;
 use App\Models\Topic;
 use App\Data\TopicData;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -15,13 +14,13 @@ use Inertia\Response;
 class TopicController extends Controller
 {
     /**
-     * Show all of the user's current teams' topics.
+     * Show all of the user's current workspaces' topics.
      *
      * @return \Inertia\Response
      */
     public function index(): Response
     {
-        $topics = Auth::user()->currentTeam->topics()->get();
+        $topics = Auth::user()->currentWorkspace->topics()->get();
 
         return Inertia::render('Dashboard/Topic/Index', [
             'topics' => TopicData::collection($topics),
@@ -36,7 +35,7 @@ class TopicController extends Controller
     //  */
     // public function store(Request $request): RedirectResponse
     // {
-    //     Auth::user()->currentTeam->forms()->create([
+    //     Auth::user()->currentWorkspace->forms()->create([
     //         'content' => $request->content,
     //         'title' => $request->title,
     //     ]);
@@ -53,7 +52,7 @@ class TopicController extends Controller
     {
         $topic = Topic::findOrFail($id);
         $events = $topic->events()->latest()->get();
-        $topics = Auth::user()->currentTeam->topics()->get();
+        $topics = Auth::user()->currentWorkspace->topics()->get();
 
         return Inertia::render('Dashboard/Topic/Show', [
             'events' => EventData::collection($events),

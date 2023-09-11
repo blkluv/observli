@@ -27,7 +27,8 @@ export default function CreateTopic({}) {
                 <DialogHeader>
                     <DialogTitle>Create topic</DialogTitle>
                     <DialogDescription>
-                        Establish a new topic to send new events to
+                        Add a new topic to your workspace that can receive new
+                        events
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
