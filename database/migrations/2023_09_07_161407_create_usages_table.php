@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usage', function (Blueprint $table) {
+        Schema::create('usages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('workspace_id')->index()->references('id')->on('workspaces');
+            $table->foreignId('user_id')->nullable()->references('id')->on('users');
+            $table->string('type');
+            $table->timestamp('timestamp');
             $table->timestamps();
         });
     }

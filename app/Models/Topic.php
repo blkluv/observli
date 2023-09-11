@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['name', 'slug', 'description', 'workspace_id'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     public function events()
     {

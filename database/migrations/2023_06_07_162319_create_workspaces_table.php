@@ -14,9 +14,10 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('user_id')->index();
             $table->string('name');
-            $table->string('domain')->nullable();
-            $table->string('avatar')->nullable();
+            $table->text('domain')->nullable();
+            $table->text('avatar')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -54,11 +54,23 @@ namespace App\Models{
 /**
  * App\Models\Membership
  *
+ * @property int $id
+ * @property int $workspace_id
+ * @property int $user_id
+ * @property string|null $role
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
  * @property-read \App\Models\Workspace $workspace
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Membership query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Membership whereWorkspaceId($value)
  */
 	class Membership extends \Eloquent {}
 }
@@ -134,6 +146,7 @@ namespace App\Models{
  * @property int $user_id
  * @property string $name
  * @property string|null $domain
+ * @property string|null $avatar
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
@@ -152,6 +165,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Workspace whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace whereDomain($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Workspace whereId($value)

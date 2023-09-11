@@ -27,7 +27,7 @@ class EventController extends BaseController
             'workspace_id' => $workspace->id,
         ];
 
-        $event = Event::create($payload);
+        $event = $workspace->events()->create($payload);
 
         $topics = $request->topics ?? ["general"];
 

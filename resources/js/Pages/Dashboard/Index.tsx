@@ -12,7 +12,7 @@ import {
 import { ArrowRight, Gauge } from "lucide-react";
 import AddMembers from "@/Dialogs/InviteMembers";
 
-export default function Dashboard({ auth, events, topics }) {
+export default function Dashboard({ analytics, auth, events, topics }) {
     return (
         <AuthenticatedLayout topics={topics} user={auth.user}>
             <Head title="Dashboard" />
@@ -39,7 +39,7 @@ export default function Dashboard({ auth, events, topics }) {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="text-2xl font-bold">
-                                            0
+                                            {analytics.event_count}
                                         </div>
                                         <p className="text-xs text-dark-200">
                                             +0% from yesterday

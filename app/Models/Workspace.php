@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,6 +12,7 @@ class Workspace extends Model
 {
     use HasApiTokens;
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +20,7 @@ class Workspace extends Model
      * @var array<int, string>
      */
 
-    protected $fillable = ['name', 'domain', 'avatar', 'user_id'];
+    protected $fillable = ['name', 'domain', 'avatar'];
 
     /**
      * Get all of the forms for the workspace.
@@ -133,6 +135,16 @@ class Workspace extends Model
         }
 
         $this->users()->detach($user);
+    }
+
+    /**
+     * Get all of the usage records for the workspace.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function usage()
+    {
+        return $this->hasMany(Usage::class);
     }
 
     /**

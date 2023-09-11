@@ -19,6 +19,9 @@ class DashboardController extends Controller
         $topics = $request->user()->currentWorkspace->topics()->get();
 
         return Inertia::render('Dashboard/Index', [
+            'analytics' => [
+                'event_count' => $request->user()->currentWorkspace->usage()->eventCreated()->today()->count(),
+            ],
             'events' => EventData::collection($events),
             'topics' => TopicData::collection($topics),
         ]);
