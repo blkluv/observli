@@ -42,7 +42,7 @@ export default function Dashboard({ analytics, auth, events, topics }) {
                                             {analytics.event_count}
                                         </div>
                                         <p className="text-xs text-dark-200">
-                                            +0% from yesterday
+                                            +230% from yesterday
                                         </p>
                                     </CardContent>
                                 </Card>
@@ -67,7 +67,17 @@ export default function Dashboard({ analytics, auth, events, topics }) {
                                             Reachability
                                         </CardTitle>
                                     </CardHeader>
-                                    <CardContent></CardContent>
+                                    <CardContent>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="w-2 h-2 bg-green-400 rounded-full" />
+                                            <div className="text-2xl font-bold">
+                                                20ms
+                                            </div>
+                                        </div>
+                                        <p className="text-xs text-dark-200">
+                                            Last checked 3 minutes ago
+                                        </p>
+                                    </CardContent>
                                 </Card>
                             </div>
                             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-12">
