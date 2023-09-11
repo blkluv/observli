@@ -13,9 +13,14 @@ class WorkspaceController extends Controller
             'domain' => $request->domain,
             'avatar' => $request->avatar == "" ? null : $request->avatar,
         ]);
-
         $request->user()->switchWorkspace($workspace);
+        return redirect()->route('dashboard');
+    }
 
+    public function switch(Request $request, $workspace_id)
+    {
+        $workspace = $request->user()->workspaces()->findOrFail($workspace_id);
+        $request->user()->switchWorkspace($workspace);
         return redirect()->route('dashboard');
     }
 }

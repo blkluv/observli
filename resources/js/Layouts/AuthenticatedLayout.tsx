@@ -4,7 +4,7 @@ import { Link, router, usePage } from "@inertiajs/react";
 import { Toaster } from "@/Components/shadcn/Toaster";
 import { useToast } from "@/Components/shadcn/Toast/use-toast";
 
-import { Hash, MoreVertical, Plus, UserPlus2 } from "lucide-react";
+import { Boxes, Hash, MoreVertical, Plus, UserPlus2 } from "lucide-react";
 import { classNames } from "@/Util";
 import AddMembers from "@/Dialogs/AddMembers";
 import { ToastAction } from "@/Components/shadcn/Toast/Toast";
@@ -22,24 +22,6 @@ import {
 import CreateTopic from "@/Dialogs/CreateTopic";
 import CreateWorkspace from "@/Dialogs/CreateWorkspace";
 
-const data = [
-    {
-        id: 1,
-        label: "Figma",
-        img: "https://viget.imgix.net/icon-figma.png?auto=format%2Ccompress&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&ixlib=php-3.3.1&q=90&w=1200&s=df8e9219322a4044ec13ce998c4fa129",
-    },
-    {
-        id: 2,
-        label: "Apple",
-        img: "https://yt3.googleusercontent.com/05lhMeAH6tZrPIUsp2yHNz3DwzhKbDUQcxcY0_qeXVyZttR_pktBzw0FcLUSR6D4fVqsEgL3ZO0=s900-c-k-c0x00ffffff-no-rj",
-    },
-    {
-        id: 3,
-        label: "Vercel",
-        img: "https://i.pinimg.com/736x/c4/35/6c/c4356cd5454d06585e0a46066b555172.jpg",
-    },
-];
-
 export default function Authenticated({ topics, user, children }) {
     const { url } = usePage();
     const { toast } = useToast();
@@ -49,6 +31,12 @@ export default function Authenticated({ topics, user, children }) {
 
     const topicIsActive = (topic) => {
         return url === `/t/${topic.id}`;
+    };
+
+    const handleWorkspaceClicked = (workspace) => {
+        router.visit(route("workspaces.switch", workspace.id), {
+            method: "post",
+        });
     };
 
     useEffect(() => {
@@ -104,14 +92,23 @@ export default function Authenticated({ topics, user, children }) {
                     <hr />
 
                     <div className="flex flex-col items-center space-y-3 no-drag">
-                        {data.map((server) => (
+                        {user.workspaces.map((workspace) => (
                             <div
-                                key={server.id}
-                                className="hover:scale-98 cursor-pointer transition w-10 h-10 rounded-xl bg-contain bg-center shadow-lg border border-gray-100/20"
+                                onClick={() =>
+                                    handleWorkspaceClicked(workspace)
+                                }
+                                key={workspace.id}
+                                className="flex items-center justify-center relative hover:scale-98 cursor-pointer transition w-10 h-10 rounded-xl bg-contain bg-center shadow-lg bg-dark-500/20 border border-gray-100/20"
                                 style={{
-                                    backgroundImage: `url(${server.img})`,
+                                    backgroundImage: workspace.avatar
+                                        ? `url(${workspace.avatar})`
+                                        : null,
                                 }}
-                            ></div>
+                            >
+                                {!workspace.avatar && (
+                                    <Boxes className="w-4 h-4" />
+                                )}
+                            </div>
                         ))}
                         <CreateWorkspace />
                     </div>
