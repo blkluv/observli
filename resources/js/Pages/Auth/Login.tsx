@@ -74,16 +74,16 @@ export default function Login({}) {
                         </form>
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
-                                <span className="w-full border-t" />
+                                <span className="w-full border-t border-dark-100" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-background px-2 text-muted-foreground">
+                                <span className="bg-dark-800 px-2 text-dark-100">
                                     Or continue with
                                 </span>
                             </div>
                         </div>
                         <Button
-                            className="hover:bg-wedgewood-100"
+                            className="bg-white/90 text-dark-800 hover:bg-white"
                             variant="outline"
                             type="button"
                             disabled={processing}
@@ -96,11 +96,11 @@ export default function Login({}) {
                             Github
                         </Button>
                     </div>
-                    <p className="px-8 text-center text-sm text-muted-foreground">
+                    <p className="px-8 text-center text-sm text-dark-100">
                         Don't have an account yet?{" "}
                         <Link
                             href="/register"
-                            className="font-semibold underline underline-offset-4 hover:text-wedgewood-600"
+                            className="font-medium underline underline-offset-4 hover:text-wedgewood-600"
                         >
                             Get started
                         </Link>

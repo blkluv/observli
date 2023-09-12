@@ -26,7 +26,7 @@
       />
 </p>
 
-Observli is an open-source tool for event logging and application monitoring. It is designed to be easy to use, self-hosted, and extensible. It was born out of the need for a simple, purpose-built, event logging solution that is not Slack or Discord. 
+Observli is an open-source tool for event logging and application monitoring. It is designed to be easy to use, self-hosted, and extensible. It was born out of the need for a simple, purpose-built, event logging solution that is not Slack or Discord. For years, I've been sending my important SaaS alerts/logs to Slack, but I've always felt that it was a poor fit for the job. Slack is a great tool for communication, but it's not a great tool for event logging.
 
 ## Features
 
