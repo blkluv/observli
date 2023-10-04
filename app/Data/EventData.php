@@ -16,7 +16,6 @@ class EventData extends Data
         public readonly string $title,
         public readonly ?string $subtitle,
         public readonly stdClass $context,
-        /** @var DataCollection<TopicData> */
         public readonly array $topics,
         public readonly int $time,
         public readonly string $nice_time,

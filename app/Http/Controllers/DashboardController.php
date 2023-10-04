@@ -23,7 +23,6 @@ class DashboardController extends Controller
                 'event_count' => $request->user()->currentWorkspace->usage()->eventCreated()->today()->count(),
             ],
             'events' => EventData::collection($events),
-            'topics' => TopicData::collection($topics),
         ]);
     }
 }

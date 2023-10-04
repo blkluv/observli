@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
 
     Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
-    Route::post('/workspaces/{workspace_id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');
+    Route::post('/workspaces/{id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

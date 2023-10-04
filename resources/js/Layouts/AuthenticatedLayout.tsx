@@ -22,7 +22,14 @@ import {
 import CreateTopic from "@/Dialogs/CreateTopic";
 import CreateWorkspace from "@/Dialogs/CreateWorkspace";
 
-export default function Authenticated({ topics, user, children }) {
+export default function Authenticated({
+    topics,
+    user,
+    children,
+    workspaces,
+    currentWorkspace,
+}) {
+    console.log(workspaces);
     const { url } = usePage();
     const { toast } = useToast();
 
@@ -44,7 +51,7 @@ export default function Authenticated({ topics, user, children }) {
             (notification) => {}
         );
         echo.private(
-            `App.Models.Workspace.${user.current_workspace_id}`
+            `App.Models.Workspace.${currentWorkspace.id}`
         ).notification((notification) => {
             if (notification.type === "App\\Notifications\\EventCreated") {
                 toast({
@@ -92,7 +99,7 @@ export default function Authenticated({ topics, user, children }) {
                     <hr />
 
                     <div className="flex flex-col items-center space-y-3 no-drag">
-                        {user.workspaces.map((workspace) => (
+                        {workspaces.map((workspace) => (
                             <div
                                 onClick={() =>
                                     handleWorkspaceClicked(workspace)
@@ -117,7 +124,7 @@ export default function Authenticated({ topics, user, children }) {
                     <div className="flex h-full">
                         <div className="hidden flex-col w-60 bg-dark-800 md:flex h-full border-r border-gray-500/20 px-2">
                             <div className="flex items-center px-4 h-12 font-title text-[15px] font-semibold text-white shadow-sm transition drag">
-                                {user.current_workspace.name}
+                                {currentWorkspace.name}
                                 <DropdownMenu>
                                     <DropdownMenuTrigger className="ml-auto opacity-80 no-drag focus:outline-none focus:ring-0 focus:border-0">
                                         <MoreVertical className="w-[18px] h-[18px]" />

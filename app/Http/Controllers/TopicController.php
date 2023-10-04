@@ -20,11 +20,7 @@ class TopicController extends Controller
      */
     public function index(): Response
     {
-        $topics = Auth::user()->currentWorkspace->topics()->get();
-
-        return Inertia::render('Dashboard/Topic/Index', [
-            'topics' => TopicData::collection($topics),
-        ]);
+        return Inertia::render('Dashboard/Topic/Index');
     }
 
     // /**

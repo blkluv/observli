@@ -4,9 +4,20 @@ import React from "react";
 import { Hash } from "lucide-react";
 import EventsGrid from "./Partials/EventsGrid";
 
-export default function Show({ auth, events, topic, topics }) {
+export default function Show({
+    auth,
+    currentWorkspace,
+    events,
+    topic,
+    workspaces,
+}) {
     return (
-        <AuthenticatedLayout topics={topics} user={auth.user}>
+        <AuthenticatedLayout
+            currentWorkspace={currentWorkspace}
+            topics={currentWorkspace.topics}
+            user={auth.user}
+            workspaces={workspaces}
+        >
             <Head title={"# " + topic.name} />
 
             <div className="flex flex-col">

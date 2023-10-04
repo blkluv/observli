@@ -17,9 +17,9 @@ class WorkspaceController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function switch(Request $request, $workspace_id)
+    public function switch(Request $request, $id)
     {
-        $workspace = $request->user()->workspaces()->findOrFail($workspace_id);
+        $workspace = $request->user()->workspaces()->findOrFail($id);
         $request->user()->switchWorkspace($workspace);
         return redirect()->route('dashboard');
     }

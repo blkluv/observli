@@ -12,9 +12,20 @@ import {
 import { ArrowRight, Gauge } from "lucide-react";
 import AddMembers from "@/Dialogs/InviteMembers";
 
-export default function Dashboard({ analytics, auth, events, topics }) {
+export default function Dashboard({
+    analytics,
+    auth,
+    events,
+    currentWorkspace,
+    workspaces,
+}) {
     return (
-        <AuthenticatedLayout topics={topics} user={auth.user}>
+        <AuthenticatedLayout
+            currentWorkspace={currentWorkspace}
+            topics={currentWorkspace.topics}
+            user={auth.user}
+            workspaces={workspaces}
+        >
             <Head title="Dashboard" />
 
             <div className="flex flex-col">

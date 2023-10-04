@@ -18,9 +18,14 @@ import {
 } from "@/Components/shadcn/Table";
 import { Play } from "lucide-react";
 
-export default function Show({ auth, event, topics }) {
+export default function Show({ auth, currentWorkspace, event, workspaces }) {
     return (
-        <AuthenticatedLayout topics={topics} user={auth.user}>
+        <AuthenticatedLayout
+            currentWorkspace={currentWorkspace}
+            topics={currentWorkspace.topics}
+            user={auth.user}
+            workspaces={workspaces}
+        >
             <Head title="Observli" />
 
             <div className="flex flex-col">
