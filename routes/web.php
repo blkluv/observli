@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
+    Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
     Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
     Route::post('/workspaces/{id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');

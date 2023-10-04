@@ -1,7 +1,9 @@
+import { isDesktopApp } from "@todesktop/client-core/platform/todesktop";
+
 import React from "react";
 import { Head, Link, router } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash } from "lucide-react";
 import {
     Card,
     CardTitle,
@@ -18,7 +20,21 @@ import {
 } from "@/Components/shadcn/Table";
 import { Play } from "lucide-react";
 
+import { useToast } from "@/Components/shadcn/Toast/use-toast";
+
 export default function Show({ auth, currentWorkspace, event, workspaces }) {
+    const { toast } = useToast();
+
+    const handleDeleteClicked = (e) => {
+        router.delete(route("events.destroy", event.id), {
+            onSuccess: () => {
+                toast({
+                    title: "Event deleted",
+                });
+            },
+        });
+    };
+
     return (
         <AuthenticatedLayout
             currentWorkspace={currentWorkspace}
@@ -31,23 +47,27 @@ export default function Show({ auth, currentWorkspace, event, workspaces }) {
             <div className="flex flex-col">
                 <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-900/20 backdrop-blur drag">
                     <div className="flex items-center text-white/90">
-                        <ArrowLeft
-                            onClick={() => history.back()}
-                            className="mx-2 w-4 h-4 cursor-pointer no-drag"
-                        />
-                        <span className="mr-2 whitespace-nowrap">
+                        {isDesktopApp() && (
+                            <ArrowLeft
+                                onClick={() => history.back()}
+                                className="mx-2 w-4 h-4 cursor-pointer no-drag"
+                            />
+                        )}
+                        <span className="mr-2 text-sm whitespace-nowrap">
                             {event.id}
                         </span>
                     </div>
-
                     <>
-                        <div className="hidden mx-2 w-px h-6 bg-white/[.06] md:block"></div>
+                        <div className="hidden mx-2 w-px h-6 bg-white/[.07] md:block"></div>
                         <div className="hidden mx-2 text-sm font-medium text-gray-200 truncate md:block">
                             {event.title}
                         </div>
                     </>
                     <div className="hidden items-center ml-auto md:flex">
-                        <div className="relative mx-2"></div>
+                        <Trash
+                            onClick={(e) => handleDeleteClicked(e)}
+                            className="cursor-pointer no-drag w-4 h-4 text-white/90 hover:text-white/80"
+                        />
                     </div>
                 </div>
                 <div className="overflow-y-scroll flex-1">

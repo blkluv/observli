@@ -24,7 +24,7 @@ export default function Show({
                 <div className="flex items-center px-8 h-12 border-b border-gray-500/20 sticky top-0 z-50 bg-dark-900/20 backdrop-blur drag">
                     <div className="flex items-center text-white/90">
                         <Hash className="mx-2 w-4 h-4" />
-                        <span className="mr-2 whitespace-nowrap">
+                        <span className="mr-2 text-sm whitespace-nowrap">
                             {topic.name}
                         </span>
                     </div>

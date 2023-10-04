@@ -1,4 +1,5 @@
-import { platform } from "@todesktop/client-core";
+import { notification } from "@todesktop/client-core";
+
 import React, { useEffect } from "react";
 import { Link, router, usePage } from "@inertiajs/react";
 import { Toaster } from "@/Components/shadcn/Toaster";
@@ -29,7 +30,6 @@ export default function Authenticated({
     workspaces,
     currentWorkspace,
 }) {
-    console.log(workspaces);
     const { url } = usePage();
     const { toast } = useToast();
 
@@ -52,17 +52,19 @@ export default function Authenticated({
         );
         echo.private(
             `App.Models.Workspace.${currentWorkspace.id}`
-        ).notification((notification) => {
-            if (notification.type === "App\\Notifications\\EventCreated") {
+        ).notification((n) => {
+            if (n.type === "App\\Notifications\\EventCreated") {
+                const title = "New event received";
+                if (isDesktopApp()) {
+                    notification.create({ title });
+                }
                 toast({
-                    title: "New event received",
-                    description: notification.title,
+                    title,
+                    description: n.title,
                     action: (
                         <ToastAction
                             onClick={() =>
-                                router.visit(
-                                    route("events.show", notification.event_id)
-                                )
+                                router.visit(route("events.show", n.event_id))
                             }
                             altText="View"
                         >
@@ -216,7 +218,7 @@ export default function Authenticated({
                                         </div>
                                     ))}
                                     <div className="flex items-center px-2 mx-2 py-1 rounded group relative transition">
-                                        <CreateTopic />
+                                        {/* <CreateTopic /> */}
                                     </div>
                                 </div>
                             </div>

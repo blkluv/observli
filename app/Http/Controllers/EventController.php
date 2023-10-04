@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Data\EventData;
-use App\Data\TopicData;
 
 class EventController extends Controller
 {

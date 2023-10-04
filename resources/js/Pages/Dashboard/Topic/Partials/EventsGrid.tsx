@@ -10,9 +10,9 @@ import { Play, Trash } from "lucide-react";
 import { Link, router } from "@inertiajs/react";
 
 export default function EventsGrid({ events }) {
-    const handleDeleteClicked = (e) => {
+    const handleDeleteClicked = (e, event) => {
         e.stopPropagation();
-        console.log("delete clicked");
+        router.delete(route("events.destroy", event.id));
     };
     const handlePlayActionsClicked = (e) => {
         e.stopPropagation();
@@ -56,7 +56,9 @@ export default function EventsGrid({ events }) {
                         <div className="absolute left-0 bottom-[-.75rem] right-0 opacity-0 hover:opacity-100 transition">
                             <div className="flex items-center justify-end px-6 space-x-1">
                                 <div
-                                    onClick={(e) => handleDeleteClicked(e)}
+                                    onClick={(e) =>
+                                        handleDeleteClicked(e, event)
+                                    }
                                     className="cursor-pointer flex items-center justify-center w-7 h-7 transition bg-dark-900 border border-gray-500/20 rounded text-dark-100 hover:border-wedgewood-500 hover:text-wedgewood-500"
                                 >
                                     <Trash className="w-3 h-3" />

@@ -47,5 +47,7 @@ class DatabaseSeeder extends Seeder
             'domain' => 'https://plane.so',
             'avatar' => 'https://camo.githubusercontent.com/6504b40ca426a2a4e16fcbec60721dc9c74c9aff784ed256be09d90bdf8d803b/68747470733a2f2f706c616e652d6d61726b6574696e672e73332e61702d736f7574682d312e616d617a6f6e6177732e636f6d2f706c616e652d726561646d652f706c616e655f6c6f676f5f2e77656270'
         ]);
+
+        $user->switchWorkspace($user->ownedWorkspaces()->first());
     }
 }
