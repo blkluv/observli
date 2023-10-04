@@ -101,7 +101,11 @@ export default function Dashboard({
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="pl-2">
-                                        <Snapshot />
+                                        <Snapshot
+                                            analytics={
+                                                analytics.daily_event_count
+                                            }
+                                        />
                                     </CardContent>
                                 </Card>
                                 <Card className="hidden lg:block col-span-4">

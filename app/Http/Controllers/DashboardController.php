@@ -16,14 +16,13 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        $topics = $request->user()->currentWorkspace->topics()->get();
-
         return Inertia::render('Dashboard/Index', [
             'analytics' => [
                 'action_count' => $request->user()->currentWorkspace->usage()->successfulAction()->today()->count(),
                 'event_count' => $request->user()->currentWorkspace->usage()->eventCreated()->today()->count(),
                 'event_daily_change' => $request->user()->currentWorkspace->daily_event_change_percentage,
                 'action_daily_change' => $request->user()->currentWorkspace->daily_action_change_percentage,
+                'daily_event_count' => $request->user()->currentWorkspace->getDailyEventCount(7),
             ],
             'events' => EventData::collection($events),
         ]);

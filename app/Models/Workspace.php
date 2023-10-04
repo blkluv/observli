@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Workspace extends Model
 {
@@ -199,5 +201,21 @@ class Workspace extends Model
         $change = round((($today - $yesterday) / $yesterday) * 100);
 
         return $yesterday > $today ? "-{$change}%" : "+{$change}%";
+    }
+
+    public function getDailyEventCount($days)
+    {
+        $last_x_days = $this->usage()->eventCreated()->where('created_at', '>', Carbon::now()->subDays($days))->get();
+        $event_count = [];
+        for($i = 0; $i < $days; $i++) {
+            $date = Carbon::now()->subDays($i)->format('d');
+            array_push($event_count, [
+                'label' => $date,
+                'value' => $last_x_days->filter(function($item) use ($date) {
+                    return $item->created_at->format('d') == $date;
+                })->count()
+            ]);
+        }
+        return array_reverse($event_count);
     }
 }
