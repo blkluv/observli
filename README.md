@@ -39,7 +39,3 @@ Observli is an open-source tool for event logging and application monitoring. It
 ## Getting Started
 
 Coming soon
-
-## The Future
-
-- **Lightweight APM**: We believe current solutions are inaccessible because they are too inexpensvive and aren't open-source. would like to provide a lightweight APM solution that can be used to monitor the performance of your applications and services via on-host agents.
