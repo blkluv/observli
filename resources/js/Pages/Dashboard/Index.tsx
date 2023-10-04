@@ -53,7 +53,8 @@ export default function Dashboard({
                                             {analytics.event_count}
                                         </div>
                                         <p className="text-xs text-dark-200">
-                                            +230% from yesterday
+                                            {analytics.event_daily_change} from
+                                            yesterday
                                         </p>
                                     </CardContent>
                                 </Card>
@@ -65,10 +66,11 @@ export default function Dashboard({
                                     </CardHeader>
                                     <CardContent>
                                         <div className="text-2xl font-bold">
-                                            0
+                                            {analytics.action_count}
                                         </div>
                                         <p className="text-xs text-dark-200">
-                                            +0% from yesterday
+                                            {analytics.action_daily_change} from
+                                            yesterday
                                         </p>
                                     </CardContent>
                                 </Card>

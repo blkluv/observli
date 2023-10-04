@@ -20,7 +20,10 @@ class DashboardController extends Controller
 
         return Inertia::render('Dashboard/Index', [
             'analytics' => [
+                'action_count' => $request->user()->currentWorkspace->usage()->successfulAction()->today()->count(),
                 'event_count' => $request->user()->currentWorkspace->usage()->eventCreated()->today()->count(),
+                'event_daily_change' => $request->user()->currentWorkspace->daily_event_change_percentage,
+                'action_daily_change' => $request->user()->currentWorkspace->daily_action_change_percentage,
             ],
             'events' => EventData::collection($events),
         ]);

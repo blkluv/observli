@@ -36,4 +36,8 @@ class Usage extends Model
         return $query->whereDay('timestamp', date('d'))->get();
     }
 
+    public function scopeYesterday($query)
+    {
+        return $query->whereDay('timestamp', date('d', strtotime('-1 day')))->get();
+    }
 }

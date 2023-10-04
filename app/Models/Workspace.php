@@ -164,4 +164,40 @@ class Workspace extends Model
 
         $this->delete();
     }
+
+    public function getDailyEventChangePercentageAttribute()
+    {
+        $today = $this->usage()->eventCreated()->today()->count();
+        $yesterday = $this->usage()->eventCreated()->yesterday()->count();
+
+        if($today == 0 && $yesterday == 0) {
+            return "0%";
+        }
+
+        if ($yesterday == 0) {
+            return "+100%";
+        }
+
+        $change = round((($today - $yesterday) / $yesterday) * 100);
+
+        return $yesterday > $today ? "-{$change}%" : "+{$change}%";
+    }
+
+    public function getDailyActionChangePercentageAttribute()
+    {
+        $today = $this->usage()->successfulAction()->today()->count();
+        $yesterday = $this->usage()->successfulAction()->yesterday()->count();
+
+        if($today == 0 && $yesterday == 0) {
+            return "0%";
+        }
+
+        if ($yesterday == 0) {
+            return "+100%";
+        }
+
+        $change = round((($today - $yesterday) / $yesterday) * 100);
+
+        return $yesterday > $today ? "-{$change}%" : "+{$change}%";
+    }
 }
