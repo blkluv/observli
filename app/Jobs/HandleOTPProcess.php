@@ -22,7 +22,6 @@ class HandleOTPProcess implements ShouldQueue
      * Create a new job instance.
      */
     public function __construct(
-        public readonly string $ip,
         public readonly string $email,
         public readonly bool $is_registration,
     ) {
@@ -35,6 +34,6 @@ class HandleOTPProcess implements ShouldQueue
     {
         $otp = (new GenerateOTP())->handle();
         (new SendOTPNotification())->handle(otp: $otp, email: $this->email, is_registration: $this->is_registration);
-        (new RememberOTP())->handle(ip: $this->ip, otp: $otp, email: $this->email);
+        (new RememberOTP())->handle(otp: $otp, email: $this->email);
     }
 }

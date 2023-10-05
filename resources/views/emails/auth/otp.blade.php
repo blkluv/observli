@@ -15,6 +15,4 @@ Your one time password is:
   Use this code to login to your account. Do not share this code with anyone. This code will expire in 15 minutes.
 @endif
 
-Your friendly, neighbourhood,<br>
-{{ config('app.name') }}
 </x-mail::message>

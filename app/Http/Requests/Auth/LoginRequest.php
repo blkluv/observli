@@ -43,21 +43,22 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
 
         $code = $this->input('otp');
+        $email = session()->get('otp.email');
 
-        if (null === $code) {
+        if ($code === null) {
             throw ValidationException::withMessages([
                 'otp' => trans('auth.failed'),
             ]);
         }
 
-        if ($code !== Cache::get(key: "{$this->ip()}-otp")['otp']) {
+        if ($code !== Cache::get("{$email}-otp")) {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'otp' => trans('auth.failed'),
             ]);
         }
 
-        if (! $user = User::where('email', Cache::get(key: "{$this->ip()}-otp")['email'])->first()) {
+        if (! $user = User::where('email', $email)->first()) {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
@@ -71,7 +72,7 @@ class LoginRequest extends FormRequest
             $user->save();
         }
 
-        Cache::forget(key: "{$this->ip()}-otp");
+        Cache::forget("{$email}-otp");
 
         RateLimiter::clear($this->throttleKey());
     }

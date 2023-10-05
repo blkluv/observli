@@ -27,7 +27,6 @@ class OTPController extends Controller
         $request->approve();
 
         dispatch(new HandleOTPProcess(
-            ip: strval(request()->ip()),
             email: $request->email,
             is_registration: false,
         ));

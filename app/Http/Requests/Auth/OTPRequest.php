@@ -50,6 +50,8 @@ class OTPRequest extends FormRequest
             ]);
         }
 
+        session()->put('otp.email', $email);
+
         RateLimiter::clear($this->throttleKey());
     }
 
@@ -81,6 +83,6 @@ class OTPRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('email')));
     }
 }
