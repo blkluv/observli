@@ -14,19 +14,13 @@ return new class() extends Migration
         Schema::create('workspace_invitations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
-            $table->string('email');
+            $table->string('name');
+            $table->string('email')->unique();
             $table->string('role')->nullable();
+            $table->string('token', 17)->unique();
             $table->timestamps();
 
             $table->unique(['workspace_id', 'email']);
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('workspace_invitations');
     }
 };

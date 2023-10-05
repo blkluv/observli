@@ -4,16 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Invitation extends Model
+class WorkspaceInvitation extends Model
 {
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +14,8 @@ class Invitation extends Model
     protected $fillable = [
         'email',
         'role',
+        'name',
+        'token'
     ];
 
     /**

@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
     Route::post('/workspaces/{id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');
+    Route::post('/workspaces/{id}/invite', [WorkspaceController::class, 'invite'])->name('workspaces.invite');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

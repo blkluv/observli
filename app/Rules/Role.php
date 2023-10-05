@@ -15,7 +15,7 @@ class Role implements ValidationRule
      */
     public function validate($attribute, $value, Closure $fail): void
     {
-        if (! in_array($value, array_keys(['admin', 'editor', 'viewer', 'owner']))) {
+        if (! in_array($value, array_keys(['administrator', 'viewer', 'owner']))) {
             $fail(__('The :attribute must be a valid role.'));
         }
     }

@@ -35,10 +35,10 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => UserData::from($request->user()),
+                'user' => $request->user() ? UserData::from($request->user()) : null,
             ],
-            'currentWorkspace' => CurrentWorkspaceData::from($request->user()->currentWorkspace),
-            'workspaces' => WorkspaceData::collection($request->user()->workspaces)->toArray(),
+            'currentWorkspace' => $request->user() ? CurrentWorkspaceData::from($request->user()->currentWorkspace) : null,
+            'workspaces' => $request->user() ? WorkspaceData::collection($request->user()->workspaces)->toArray() : [],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy())->toArray(), [
                     'location' => $request->url(),

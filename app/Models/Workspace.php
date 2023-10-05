@@ -119,7 +119,7 @@ class Workspace extends Model
      */
     public function invitations()
     {
-        return $this->hasMany(Invitation::class);
+        return $this->hasMany(WorkspaceInvitation::class);
     }
 
     /**

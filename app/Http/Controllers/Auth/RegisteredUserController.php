@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Jobs\HandleOTPProcess;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Models\WorkspaceInvitation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -38,13 +38,56 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
         ]);
 
-        event(new Registered($user));
-
         $request->session()->put('otp.email', $request->email);
 
         dispatch(new HandleOTPProcess(
-            ip: strval(request()->ip()),
             email: $request->email,
+            is_registration: true,
+        ));
+
+        return redirect(route('otp'));
+    }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function invite(Request $request): RedirectResponse
+    {
+        $invitation = WorkspaceInvitation::where('token', $request->token)->firstOrFail();
+        $workspace = $invitation->workspace;
+
+        if($auth = auth()->user()){
+            if($workspace->hasUserWithEmail($auth->email)) {
+                return redirect(route('dashboard'));
+            }
+        }
+
+        if($user = User::where('email', $invitation->email)->first()) {
+            if(!$workspace->hasUserWithEmail($invitation->email)) {
+                $workspace->users()->attach($user, [
+                    'role' => $invitation->role,
+                ]);
+            }
+        } else {
+            $user = User::create([
+                'name' => $invitation->name,
+                'email' => $invitation->email,
+            ]);
+            $workspace->users()->attach($user, [
+                'role' => $invitation->role,
+            ]);
+        }
+
+        $user->switchWorkspace($workspace);
+
+        $invitation->delete();
+
+        $request->session()->put('otp.email', $invitation->email);
+
+        dispatch(new HandleOTPProcess(
+            email: $invitation->email,
             is_registration: true,
         ));
 

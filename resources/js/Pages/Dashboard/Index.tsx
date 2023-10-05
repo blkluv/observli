@@ -10,7 +10,7 @@ import {
     CardTitle,
 } from "@/Components/shadcn/Card";
 import { ArrowRight, Gauge } from "lucide-react";
-import AddMembers from "@/Dialogs/InviteMembers";
+import InviteMembers from "@/Dialogs/InviteMembers";
 
 export default function Dashboard({
     analytics,
@@ -35,7 +35,7 @@ export default function Dashboard({
                         <span className="whitespace-nowrap">Dashboard</span>
                     </div>
                     <div className="hidden items-center ml-auto md:flex no-drag">
-                        <AddMembers />
+                        <InviteMembers currentWorkspace={currentWorkspace} />
                     </div>
                 </div>
                 <div className="overflow-y-scroll flex-1">

@@ -212,9 +212,9 @@ export default function Authenticated({
                                                 <Hash className="mr-1.5 w-4 h-4" />
                                                 {topic.name}
                                             </Link>
-                                            {topic.name !== "general" && (
+                                            {/* {topic.name !== "general" && (
                                                 <AddMembers topic={topic} />
-                                            )}
+                                            )} */}
                                         </div>
                                     ))}
                                     <div className="flex items-center px-2 mx-2 py-1 rounded group relative transition">
