@@ -17,6 +17,7 @@ export default function Dashboard({
     auth,
     events,
     currentWorkspace,
+    reachability,
     workspaces,
 }) {
     return (
@@ -84,11 +85,12 @@ export default function Dashboard({
                                         <div className="flex items-center space-x-3">
                                             <div className="w-2 h-2 bg-green-400 rounded-full" />
                                             <div className="text-2xl font-bold">
-                                                20ms
+                                                {reachability.ping}ms
                                             </div>
                                         </div>
                                         <p className="text-xs text-dark-200">
-                                            Last checked 3 minutes ago
+                                            Last checked{" "}
+                                            {reachability.last_check}
                                         </p>
                                     </CardContent>
                                 </Card>

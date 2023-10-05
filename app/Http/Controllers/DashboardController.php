@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Data\EventData;
 use App\Data\TopicData;
+use Cache;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,6 +18,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+        $reachability = Cache::get(key: "workspace.{$request->user()->currentWorkspace->id}.reachability");
         return Inertia::render('Dashboard/Index', [
             'analytics' => [
                 'action_count' => $request->user()->currentWorkspace->usage()->successfulAction()->today()->count(),
@@ -23,6 +26,10 @@ class DashboardController extends Controller
                 'event_daily_change' => $request->user()->currentWorkspace->daily_event_change_percentage,
                 'action_daily_change' => $request->user()->currentWorkspace->daily_action_change_percentage,
                 'daily_event_count' => $request->user()->currentWorkspace->getDailyEventCount(7),
+            ],
+            'reachability' => [
+                'ping' => $reachability['ping'] ?? null,
+                'last_check' => $reachability['time'] ? Carbon::createFromTimestamp($reachability['time'])->diffForHumans() : null,
             ],
             'events' => EventData::collection($events),
         ]);
