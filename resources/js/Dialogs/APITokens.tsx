@@ -2,8 +2,6 @@ import React from "react";
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -16,8 +14,6 @@ import {
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuGroup,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
 } from "@/Components/shadcn/DropdownMenu";
 
 import {
@@ -42,9 +38,7 @@ export default function APITokens({ tokens, handleApiTokenCreated }) {
             const response = await window.axios.post(route("tokens.store"));
             setShowDialog(false);
             handleApiTokenCreated(response.data);
-        } catch (error) {
-            console.log(error);
-        }
+        } catch (error) {}
     };
 
     const handleDeleteTokenClicked = (e, token) => {

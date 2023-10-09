@@ -21,6 +21,7 @@ import {
 import { Play } from "lucide-react";
 
 import { useToast } from "@/Components/shadcn/Toast/use-toast";
+import { PlayActions } from "@/Components/PlayActions";
 
 export default function Show({ auth, currentWorkspace, event, workspaces }) {
     const { toast } = useToast();
@@ -84,12 +85,12 @@ export default function Show({ auth, currentWorkspace, event, workspaces }) {
                                                 {event.subtitle}
                                             </p>
                                         </div>
-                                        <button
-                                            disabled={false}
-                                            className="flex items-center justify-center w-10 h-10 transition bg-dark-900 border border-gray-500/20 rounded text-dark-100 hover:border-wedgewood-500 hover:text-wedgewood-500"
-                                        >
-                                            <Play className="w-5 h-5" />
-                                        </button>
+                                        {event.manual_actions.length > 0 && (
+                                            <PlayActions
+                                                event={event}
+                                                size="large"
+                                            />
+                                        )}
                                     </CardTitle>
                                     <CardDescription className="text-dark-100">
                                         {event.description}

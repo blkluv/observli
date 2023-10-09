@@ -17,8 +17,9 @@ class EventData extends Data
         public readonly ?string $subtitle,
         public readonly stdClass $context,
         public readonly array $topics,
-        public readonly int $time,
+        public readonly int $timestamp,
         public readonly string $nice_time,
+        public readonly array $manual_actions,
     ) {
 
     }
@@ -28,15 +29,19 @@ class EventData extends Data
         $context = $event->context;
         $topics = $event->topics;
 
+        $manual_actions = collect($event->actions)->filter(fn ($action) => in_array($action['type'], ['visit_url']))->all();
+
         return self::from([
             'id' =>  (new HashidManager())->encode($event->id),
             'workspace_id' => (new HashidManager())->encode($event->workspace_id),
             'title' => $event->title,
             'subtitle' => $event->subtitle,
+            'actions' => $event->actions ?? [],
             'context' => $context,
             'topics' => $topics->map(fn ($topic) => ['name' => $topic->name, 'id' => (new HashidManager())->encode($topic->id)])->all(),
-            'time' => $event->created_at->timestamp,
+            'timestamp' => $event->created_at->timestamp,
             'nice_time' => $event->created_at->diffForHumans(),
+            'manual_actions' => $manual_actions,
         ]);
     }
 }

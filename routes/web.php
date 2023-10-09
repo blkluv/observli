@@ -24,7 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
+
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+    Route::post('/events/{id}/actions/execute', [EventController::class, 'executeAction'])->name('events.action.execute');
 
     Route::post('/tokens', [ApiTokenController::class, 'store'])->name('tokens.store');
     Route::delete('/tokens/{id}', [ApiTokenController::class, 'destroy'])->name('tokens.destroy');

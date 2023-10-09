@@ -1,6 +1,18 @@
 <?php  
 
 return [
+    'actions' => [
+        'types' => [
+            'auto' => [
+                
+            ],
+            'manual' => [
+                'visit_url' => [
+                    'url' => 'url'
+                ]
+            ]
+        ]
+    ],
     'usage' => [
         'types' => [
             'action' => [

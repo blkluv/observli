@@ -21,12 +21,4 @@ return new class () extends Migration {
             $table->unique(['workspace_id', 'slug']);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('topics');
-    }
 };
