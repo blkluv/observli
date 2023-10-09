@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Data\ApiKeyData;
 use App\Data\CurrentWorkspaceData;
 use App\Data\UserData;
 use App\Data\WorkspaceData;

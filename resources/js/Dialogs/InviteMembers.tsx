@@ -1,16 +1,9 @@
 import React from "react";
 
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/Components/shadcn/Avatar";
-import { Button } from "@/Components/shadcn/Button";
-import {
     Dialog,
     DialogContent,
     DialogHeader,
-    DialogDescription,
     DialogFooter,
     DialogTitle,
     DialogTrigger,
@@ -20,25 +13,11 @@ import { Label } from "@/Components/shadcn/Label";
 import { ArrowRight, ChevronDown, UserPlus2 } from "lucide-react";
 
 import {
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-} from "@/Components/shadcn/Popover";
-import {
-    Command,
-    CommandInput,
-    CommandList,
-    CommandEmpty,
-    CommandGroup,
-    CommandItem,
-} from "@/Components/shadcn/Command";
-import {
     Select,
     SelectTrigger,
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectValue,
 } from "@/Components/shadcn/Select";
 import { router, useForm } from "@inertiajs/react";
@@ -114,56 +93,6 @@ export default function InviteMembers({ currentWorkspace }) {
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
-                        {/* <Popover
-                            open={popoverOpen}
-                            onOpenChange={setPoppoverOpen}
-                        >
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    className="text-left w-full capitalize"
-                                >
-                                    {data.role}{" "}
-                                    <ChevronDown className="ml-2 h-4 w-4 text-white/90" />
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="p-0" align="start">
-                                <Command>
-                                    <CommandList>
-                                        <CommandGroup className="p-1.5">
-                                            <CommandItem
-                                                className="space-y-1 flex flex-col items-start px-4 py-2"
-                                                onSelect={(e) =>
-                                                    handleRoleChanged(
-                                                        e,
-                                                        "viewer"
-                                                    )
-                                                }
-                                            >
-                                                <p>Viewer</p>
-                                                <p className="text-sm text-dark-100">
-                                                    Can view and comment.
-                                                </p>
-                                            </CommandItem>
-                                            <CommandItem
-                                                className="space-y-1 flex flex-col items-start px-4 py-2"
-                                                onSelect={(e) =>
-                                                    handleRoleChanged(
-                                                        e,
-                                                        "administrator"
-                                                    )
-                                                }
-                                            >
-                                                <p>Administrator</p>
-                                                <p className="text-sm text-dark-100">
-                                                    Can view, comment and edit.
-                                                </p>
-                                            </CommandItem>
-                                        </CommandGroup>
-                                    </CommandList>
-                                </Command>
-                            </PopoverContent>
-                        </Popover> */}
                     </div>
                 </div>
                 <DialogFooter>

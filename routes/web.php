@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TopicController;
@@ -24,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+    Route::post('/tokens', [ApiTokenController::class, 'store'])->name('tokens.store');
+    Route::delete('/tokens/{id}', [ApiTokenController::class, 'destroy'])->name('tokens.destroy');
 
     Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
     Route::post('/workspaces/{id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');

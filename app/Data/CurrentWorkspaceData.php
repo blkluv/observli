@@ -14,6 +14,8 @@ class CurrentWorkspaceData extends Data
         public readonly string $name,
         /** @var DataCollection<TopicData> */
         public readonly DataCollection $topics,
+        /** @var DataCollection<ApiTokenData> */
+        public readonly DataCollection $tokens,
         public readonly string $created_at,
         public readonly string $updated_at,
     ) {
@@ -26,6 +28,7 @@ class CurrentWorkspaceData extends Data
             'id' => (new HashidManager())->encode($workspace->id),
             'name' => $workspace->name,
             'topics' => TopicData::collection($workspace->topics),
+            'tokens' => ApiTokenData::collection($workspace->tokens),
             'created_at' => $workspace->created_at->diffForHumans(),
             'updated_at' => $workspace->updated_at->diffForHumans(),
         ]);

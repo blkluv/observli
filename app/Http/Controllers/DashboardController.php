@@ -29,7 +29,7 @@ class DashboardController extends Controller
             ],
             'reachability' => [
                 'ping' => $reachability['ping'] ?? null,
-                'last_check' => $reachability['time'] ? Carbon::createFromTimestamp($reachability['time'])->diffForHumans() : null,
+                'last_check' => $reachability && $reachability['time'] ? Carbon::createFromTimestamp($reachability['time'])->diffForHumans() : null,
             ],
             'events' => EventData::collection($events),
         ]);

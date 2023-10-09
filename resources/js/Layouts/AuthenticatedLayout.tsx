@@ -22,6 +22,8 @@ import {
 } from "@/Components/shadcn/DropdownMenu";
 import CreateTopic from "@/Dialogs/CreateTopic";
 import CreateWorkspace from "@/Dialogs/CreateWorkspace";
+import APIToken from "@/Dialogs/APIToken";
+import APITokens from "@/Dialogs/APITokens";
 
 export default function Authenticated({
     topics,
@@ -32,6 +34,8 @@ export default function Authenticated({
 }) {
     const { url } = usePage();
     const { toast } = useToast();
+    const [newApiToken, setNewApiToken] = React.useState(null);
+    const [showApiTokenDialog, setShowApiTokenDialog] = React.useState(false);
 
     //@ts-ignore
     const echo: any = window.Echo;
@@ -44,6 +48,12 @@ export default function Authenticated({
         router.visit(route("workspaces.switch", workspace.id), {
             method: "post",
         });
+    };
+
+    const handleApiTokenCreated = (token) => {
+        setNewApiToken(token);
+        setShowApiTokenDialog(true);
+        router.reload();
     };
 
     useEffect(() => {
@@ -81,6 +91,7 @@ export default function Authenticated({
             {isDesktopApp() && (
                 <div className="bg-dark-900 h-7 border-b border-dark-200/20 drag"></div>
             )}
+
             <div className="flex flex-1 overflow-hidden">
                 <Toaster />
                 <div className="hidden overflow-y-scroll pt-4 space-y-4 bg-dark-800 md:flex flex-col scrollbar-hide w-20 items-center border-r border-gray-500/20 drag">
@@ -148,12 +159,12 @@ export default function Authenticated({
                                         </DropdownMenuLabel>
                                         <DropdownMenuSeparator />
                                         <DropdownMenuGroup>
-                                            <DropdownMenuItem>
-                                                Profile
-                                                <DropdownMenuShortcut>
-                                                    ⇧⌘P
-                                                </DropdownMenuShortcut>
-                                            </DropdownMenuItem>
+                                            <APITokens
+                                                tokens={currentWorkspace.tokens}
+                                                handleApiTokenCreated={
+                                                    handleApiTokenCreated
+                                                }
+                                            />
                                             <DropdownMenuItem>
                                                 Billing
                                                 <DropdownMenuShortcut>
@@ -230,6 +241,11 @@ export default function Authenticated({
                     </div>
                 </div>
             </div>
+            <APIToken
+                open={showApiTokenDialog}
+                setOpen={setShowApiTokenDialog}
+                token={newApiToken}
+            />
         </div>
     );
 }
