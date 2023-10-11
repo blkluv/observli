@@ -24,6 +24,7 @@ import CreateTopic from "@/Dialogs/CreateTopic";
 import CreateWorkspace from "@/Dialogs/CreateWorkspace";
 import APIToken from "@/Dialogs/APIToken";
 import APITokens from "@/Dialogs/APITokens";
+import Settings from "@/Dialogs/Settings";
 
 export default function Authenticated({
     topics,
@@ -171,12 +172,7 @@ export default function Authenticated({
                                                     ⇧⌘B
                                                 </DropdownMenuShortcut>
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                Settings
-                                                <DropdownMenuShortcut>
-                                                    ⌘S
-                                                </DropdownMenuShortcut>
-                                            </DropdownMenuItem>
+                                            <Settings />
                                         </DropdownMenuGroup>
                                         <DropdownMenuSeparator />
                                         <DropdownMenuItem
