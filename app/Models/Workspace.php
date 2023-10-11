@@ -182,7 +182,7 @@ class Workspace extends Model
 
         $change = round((($today - $yesterday) / $yesterday) * 100);
 
-        return $yesterday > $today ? "-{$change}%" : "+{$change}%";
+        return $yesterday > $today ? "{$change}%" : "+{$change}%";
     }
 
     public function getDailyActionChangePercentageAttribute()
@@ -200,7 +200,7 @@ class Workspace extends Model
 
         $change = round((($today - $yesterday) / $yesterday) * 100);
 
-        return $yesterday > $today ? "-{$change}%" : "+{$change}%";
+        return $yesterday > $today ? "{$change}%" : "+{$change}%";
     }
 
     public function getDailyEventCount($days)
