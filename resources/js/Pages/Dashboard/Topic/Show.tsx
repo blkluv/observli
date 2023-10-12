@@ -1,8 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Hash } from "lucide-react";
 import EventsGrid from "./Partials/EventsGrid";
+import Fuse from "fuse.js";
 
 export default function Show({
     auth,
@@ -11,6 +12,36 @@ export default function Show({
     topic,
     workspaces,
 }) {
+    const [filteredEvents, setFilteredEvents] = React.useState(events);
+    const [userFilterKeys, setUserFilterKeys] = useState([]);
+    const [filter, setFilter] = React.useState("");
+
+    useEffect(() => {
+        const fuse = new Fuse(events, {
+            keys: ["title", "description"].concat(userFilterKeys),
+        });
+        if (filter.length > 0) {
+            const results = fuse.search(filter);
+            setFilteredEvents(results.map((result) => result.item));
+        } else {
+            setFilteredEvents(events);
+        }
+    }, [filter]);
+
+    useEffect(() => {
+        let keys = [];
+        events.forEach((event) => {
+            if (event.context) {
+                Object.keys(event.context).forEach((key) => {
+                    if (!keys.includes(key)) {
+                        keys.push(`context.${key}`);
+                    }
+                });
+            }
+        });
+        setUserFilterKeys(keys);
+    }, [events]);
+
     return (
         <AuthenticatedLayout
             currentWorkspace={currentWorkspace}
@@ -37,6 +68,7 @@ export default function Show({
                     <div className="hidden items-center ml-auto md:flex no-drag">
                         <div className="relative mx-2">
                             <input
+                                onChange={(e) => setFilter(e.target.value)}
                                 type="text"
                                 placeholder="Search"
                                 className="px-3 w-72 h-8 text-sm font-medium placeholder:text-dark-200 bg-dark-800 shadow rounded border border-gray-100/20 focus:ring-white focus:outline-none focus:border-transparent transition"
@@ -45,7 +77,7 @@ export default function Show({
                     </div>
                 </div>
                 <div className="overflow-y-scroll flex-1">
-                    <EventsGrid events={events} />
+                    <EventsGrid events={filteredEvents} />
                 </div>
             </div>
         </AuthenticatedLayout>
