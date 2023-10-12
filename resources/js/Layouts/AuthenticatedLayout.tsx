@@ -172,7 +172,9 @@ export default function Authenticated({
                                                     ⇧⌘B
                                                 </DropdownMenuShortcut>
                                             </DropdownMenuItem>
-                                            <Settings />
+                                            <Settings
+                                                workspace={currentWorkspace}
+                                            />
                                         </DropdownMenuGroup>
                                         <DropdownMenuSeparator />
                                         <DropdownMenuItem

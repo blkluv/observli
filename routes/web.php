@@ -32,10 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tokens/{id}', [ApiTokenController::class, 'destroy'])->name('tokens.destroy');
 
     Route::post('/workspaces', [WorkspaceController::class, 'store'])->name('workspaces.store');
-    Route::post('/workspaces/{id}/switch', [WorkspaceController::class, 'switch'])->name('workspaces.switch');
+    Route::patch('/workspaces', [WorkspaceController::class, 'update'])->name('workspaces.update');
+    Route::post('/workspaces/switch/{id}', [WorkspaceController::class, 'switch'])->name('workspaces.switch');
+    Route::delete('/workspaces', [WorkspaceController::class, 'destroy'])->name('workspaces.destroy');
     Route::post('/workspaces/{id}/invite', [WorkspaceController::class, 'invite'])->name('workspaces.invite');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

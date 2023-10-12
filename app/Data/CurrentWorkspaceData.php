@@ -12,6 +12,8 @@ class CurrentWorkspaceData extends Data
     public function __construct(
         public readonly string $id,
         public readonly string $name,
+        public readonly ?string $domain,
+        public readonly ?string $avatar,
         /** @var DataCollection<TopicData> */
         public readonly DataCollection $topics,
         /** @var DataCollection<ApiTokenData> */
@@ -27,6 +29,8 @@ class CurrentWorkspaceData extends Data
         return self::from([
             'id' => (new HashidManager())->encode($workspace->id),
             'name' => $workspace->name,
+            'domain' => $workspace->domain,
+            'avatar' => $workspace->avatar,
             'topics' => TopicData::collection($workspace->topics),
             'tokens' => ApiTokenData::collection($workspace->tokens),
             'created_at' => $workspace->created_at->diffForHumans(),

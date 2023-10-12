@@ -50,4 +50,29 @@ class WorkspaceController extends Controller
         ));
         return redirect()->route('dashboard');
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:140',
+            'domain' => 'active_url',
+            'avatar' => 'active_url'
+        ]);
+
+        $workspace = $request->user()->currentWorkspace()->update([
+            'name' => $request->name,
+            'domain' => $request->domain ?? null,
+            'avatar' => $request->avatar ?? null,
+        ]);
+
+        return back();
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->user()->currentWorkspace()->delete();
+        $request->user()->switchWorkspace($request->user()->ownedWorkspaces()->first());
+
+        return redirect()->route('dashboard');
+    }
 }
