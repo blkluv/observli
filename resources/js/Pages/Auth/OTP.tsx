@@ -39,7 +39,7 @@ export default function OTP({}) {
                         <form onSubmit={handleSubmit}>
                             <div className="grid gap-2">
                                 <div className="grid gap-1">
-                                    <div className="space-y-4">
+                                    <div className="space-y-4 mb-4">
                                         <OtpInput
                                             className="w-full justify-center h-16"
                                             value={data.otp}
@@ -47,7 +47,7 @@ export default function OTP({}) {
                                             onSubmit={handleSubmit}
                                             numInputs={6}
                                             inputStyle={
-                                                "focus:ring-none focus:outline-none h-full block rounded bg-wedgewood-50 border shadow border-gray-200/50 !w-[40px]"
+                                                "focus:ring-0 focus:outline-none h-full block rounded bg-transparent border border-dark-200/20 focus:border-wedgewood-500/90 shadow !w-[40px]"
                                             }
                                             shouldAutoFocus={true}
                                         />
@@ -59,7 +59,10 @@ export default function OTP({}) {
                                         )}
                                     </div>
                                 </div>
-                                <Button className="mt-4" disabled={processing}>
+                                <Button
+                                    className="bg-wedgewood-700 hover:bg-gray-900 hover:bg-wedgewood-500/90 hover:shadow"
+                                    disabled={processing}
+                                >
                                     {processing && (
                                         <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                                     )}
@@ -68,7 +71,7 @@ export default function OTP({}) {
                             </div>
                         </form>
                     </div>
-                    <p className="px-8 text-center text-sm text-muted-foreground">
+                    <p className="px-8 text-center text-sm text-dark-100">
                         Didn't receive an email?{" "}
                         <Link
                             href="/login"

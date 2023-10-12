@@ -12,11 +12,11 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <main className="flex min-h-screen overflow-hidden pt-16 sm:py-28 bg-dark-700 text-white/90">
+        <main className="flex min-h-screen overflow-hidden pt-16 sm:py-28 bg-dark-700 text-white/90 drag">
             <div className="mx-auto flex w-full max-w-lg flex-col px-4 sm:px-6">
                 <Link href="/" aria-label="Home">
                     <svg
-                        className="mx-auto w-12 h-12 text-wedgewood-500"
+                        className="mx-auto w-12 h-12 text-wedgewood-500 no-drag"
                         width="825"
                         height="825"
                         viewBox="0 0 825 825"
@@ -30,11 +30,6 @@ export default function AuthLayout({
                     </svg>
                 </Link>
                 <div className="relative mt-12 sm:mt-16">
-                    <CirclesBackground
-                        width="1090"
-                        height="1090"
-                        className="absolute -top-7 left-1/2 -z-10 h-[788px] -translate-x-1/2 stroke-white [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:-top-9 sm:h-auto"
-                    />
                     <h1 className="text-center text-2xl font-medium tracking-tight text-white/90">
                         {title}
                     </h1>
@@ -44,7 +39,7 @@ export default function AuthLayout({
                         </p>
                     )}
                 </div>
-                <div className="-mx-4 mt-10 flex-auto bg-dark-800 px-4 py-10 shadow-2xl shadow-gray-900/10 sm:mx-0 sm:flex-none sm:rounded-3xl border border-dark-200/20">
+                <div className="no-drag -mx-4 mt-10 flex-auto bg-dark-800 px-4 py-10 shadow-2xl shadow-gray-900/10 sm:mx-0 sm:flex-none sm:rounded-3xl border border-dark-200/20">
                     {children}
                 </div>
             </div>
