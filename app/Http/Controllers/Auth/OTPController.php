@@ -26,6 +26,8 @@ class OTPController extends Controller
     {
         $request->approve();
 
+        $request->session()->put('otp.email', $request->email);
+
         dispatch(new HandleOTPProcess(
             email: $request->email,
             is_registration: false,
