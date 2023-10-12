@@ -22,6 +22,7 @@ import {
 } from "@/Components/shadcn/Select";
 import { router, useForm } from "@inertiajs/react";
 import InputError from "@/Components/InputError";
+import { Icons } from "@/Components/shadcn/Icons";
 
 export default function InviteMembers({ currentWorkspace }) {
     const [popoverOpen, setPoppoverOpen] = React.useState(false);
@@ -78,7 +79,10 @@ export default function InviteMembers({ currentWorkspace }) {
                     </div>
                     <div className="grid gap-2">
                         <Label htmlFor="description">Role</Label>
-                        <Select value={data.role}>
+                        <Select
+                            value={data.role}
+                            onValueChange={(value) => setData("role", value)}
+                        >
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select a role" />
                             </SelectTrigger>
@@ -100,7 +104,10 @@ export default function InviteMembers({ currentWorkspace }) {
                         onClick={(e) => handleSubmit(e)}
                         className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition "
                     >
-                        <ArrowRight className="w-4 h-4" />
+                        {processing && (
+                            <Icons.spinner className="h-4 w-4 animate-spin" />
+                        )}
+                        {!processing && <ArrowRight className="w-4 h-4" />}
                     </button>
                 </DialogFooter>
             </DialogContent>
