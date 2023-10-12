@@ -38,11 +38,14 @@ export default function Settings({ workspace }) {
                     >
                         <div className="flex space-x-4">
                             <Tab.List className="flex flex-col space-y-4 w-28">
-                                <Tab className="text-left">
+                                <Tab
+                                    as="div"
+                                    className="text-left focus:outline-none foucs:ring-0"
+                                >
                                     {({ selected }) => (
                                         <button
                                             className={classNames(
-                                                "text-left text-sm text-dark-100 hover:text-white/90 transition font-medium",
+                                                "text-left text-sm text-dark-100 hover:text-white/90 transition font-medium focus:outline-none foucs:ring-0",
                                                 selected && "text-white/90"
                                             )}
                                         >
@@ -50,11 +53,14 @@ export default function Settings({ workspace }) {
                                         </button>
                                     )}
                                 </Tab>
-                                <Tab className="text-left">
+                                <Tab
+                                    as="div"
+                                    className="text-left focus:outline-none foucs:ring-0"
+                                >
                                     {({ selected }) => (
                                         <button
                                             className={classNames(
-                                                "text-left text-sm text-dark-100 hover:text-white/90 transition font-medium",
+                                                "text-left text-sm text-dark-100 hover:text-white/90 transition font-medium focus:outline-none foucs:ring-0",
                                                 selected && "text-white/90"
                                             )}
                                         >
