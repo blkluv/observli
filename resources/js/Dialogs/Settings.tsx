@@ -11,7 +11,6 @@ import {
     DropdownMenuItem,
     DropdownMenuShortcut,
 } from "@/Components/shadcn/DropdownMenu";
-import { Button } from "@/Components/shadcn/Button";
 import { classNames } from "@/Util";
 import ProfileInformationForm from "./Partials/ProfileInformationForm";
 import WorkspaceInformationForm from "./Partials/WorkspaceInformationForm";

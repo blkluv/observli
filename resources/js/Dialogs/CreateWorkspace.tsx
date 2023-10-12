@@ -98,7 +98,7 @@ export default function CreateWorkspace({}) {
                     <DialogFooter>
                         <button
                             onClick={(e) => onSubmit(e)}
-                            className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                            className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition "
                         >
                             {processing && (
                                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -120,7 +120,7 @@ export default function CreateWorkspace({}) {
                             </p>
                             <button
                                 onClick={() => setOpen(false)}
-                                className="mt-4 text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                                className="mt-4 text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition "
                             >
                                 Get started {""}
                                 <ArrowRight className="w-4 h-4" />

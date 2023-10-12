@@ -49,7 +49,7 @@ export default function InviteMembers({ currentWorkspace }) {
 
     return (
         <Dialog>
-            <DialogTrigger className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99">
+            <DialogTrigger className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition ">
                 <UserPlus2 className="w-4 h-4"></UserPlus2>{" "}
                 <span>Invite members</span>
             </DialogTrigger>
@@ -98,7 +98,7 @@ export default function InviteMembers({ currentWorkspace }) {
                 <DialogFooter>
                     <button
                         onClick={(e) => handleSubmit(e)}
-                        className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99"
+                        className="text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition "
                     >
                         <ArrowRight className="w-4 h-4" />
                     </button>

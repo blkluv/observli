@@ -13,8 +13,8 @@ export default function WorkspaceInformationForm({
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: workspace.name,
-            domain: workspace.domain,
-            avatar: workspace.avatar,
+            domain: workspace.domain || "",
+            avatar: workspace.avatar || "",
         });
 
     const submit = (e) => {

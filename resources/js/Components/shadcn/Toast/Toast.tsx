@@ -59,7 +59,7 @@ const ToastAction = React.forwardRef<
     <ToastPrimitives.Action
         ref={ref}
         className={cn(
-            "text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition hover:scale-99",
+            "text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold bg-wedgewood-700 shadow rounded border border-gray-100/20 transition ",
             className
         )}
         {...props}

@@ -66,7 +66,7 @@ export default function APITokens({ tokens, handleApiTokenCreated }) {
                         <TableCaption className="text-wedgewood-500/30 hover:text-wedgewood-500/90 cursor-pointer">
                             <Button
                                 onClick={(e) => handleCreateApiTokenClicked(e)}
-                                className="bg-wedgewood-700 hover:bg-gray-900 hover:bg-wedgewood-500/90 hover:shadow text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold  shadow rounded border border-gray-100/20 transition hover:scale-99"
+                                className="bg-wedgewood-700 hover:bg-gray-900 hover:bg-wedgewood-500/90 hover:shadow text-white/90 flex items-center space-x-1 px-3 h-8 text-xs font-semibold  shadow rounded border border-gray-100/20 transition "
                             >
                                 <span className="text-sm font-medium">
                                     Create API Key
