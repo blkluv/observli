@@ -18,10 +18,19 @@ class DatabaseSeeder extends Seeder
         $token = $user->workspaces()->first()->createToken('api')->plainTextToken;
         $this->command->info($token);
 
-        $user->ownedWorkspaces()->create([
+        $workspace = $user->ownedWorkspaces()->create([
             'name' => 'Infisical',
             'domain' => 'https://infisical.com',
             'avatar' => 'https://avatars.githubusercontent.com/u/107880645?s=280&v=4'
+        ]);
+
+        $workspace->topics()->create([
+            'name' => 'users',
+            'slug' => 'users',
+        ]);
+        $workspace->topics()->create([
+            'name' => 'payments',
+            'slug' => 'payments',
         ]);
 
         $user->ownedWorkspaces()->create([
