@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Data\EventData;
+use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ class EventController extends BaseController
     {
         $workspace = $request->user();
 
-        return response()->json(EventData::collection($workspace->events));
+        return $this->sendResponse(EventResource::collection($workspace->events));
     }
 
     public function store(Request $request)
@@ -22,7 +23,6 @@ class EventController extends BaseController
 
         $payload = [
             'title' => $request->title,
-            'actions' => $request->actions ?? [],
             'context' => (object) $request->context,
             'message' => $request->message ?? null,
             'workspace_id' => $workspace->id,
@@ -31,7 +31,6 @@ class EventController extends BaseController
         $event = $workspace->events()->create($payload);
 
         $topics = $request->topics ?? ["general"];
-
         foreach($topics as $topic) {
             $topic = $workspace->topics()->firstOrCreate([
                 'name' => $topic,
@@ -43,7 +42,15 @@ class EventController extends BaseController
             $event->topics()->attach($topic);
         }
 
-        return response()->json(EventData::from($event), 201);
+        $actions = $request->actions ?? [];
+        foreach($actions as $action) {
+            $event->actions()->create([
+                'type' => $action['type'],
+                'context' => (object) $action['context'] ?? (object) [],
+            ]);
+        }
+
+        return $this->sendResponse(new EventResource($event), 201);
     }
 
     public function show(Request $request, $id)
@@ -52,6 +59,6 @@ class EventController extends BaseController
 
         $event = Event::findOrFail($id);
 
-        return response()->json(EventData::from($event));
+        return $this->sendResponse(EventData::from($event));
     }
 }
