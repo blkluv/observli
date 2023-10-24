@@ -13,7 +13,15 @@ return [
             ]
         ]
     ],
+    'billing_enabled' => env('BILLING_ENABLED', false),
     'usage' => [
+        'limits' => [
+            'events' => [
+                'free' => 250,
+                'startup' => 2500,
+                'pro' => 25000,
+            ],
+        ],
         'types' => [
             'action' => [
                 'failed' => 'action.failed',

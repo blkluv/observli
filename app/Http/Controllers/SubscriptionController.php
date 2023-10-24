@@ -23,6 +23,6 @@ class SubscriptionController extends Controller
         })->first();
         $workspace = $request->user()->currentWorkspace;
         $workspace->createOrGetStripeCustomer();
-        return $workspace->newSubscription('default', $price->id)->checkout();
+        return $workspace->newSubscription('default', $price->id)->allowPromotionCodes()->checkout();
     }
 }

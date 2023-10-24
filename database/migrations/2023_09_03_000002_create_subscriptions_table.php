@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('stripe_id')->unique();
             $table->string('stripe_status');
+            $table->string('stripe_lookup_key')->nullable();
             $table->string('stripe_price')->nullable();
             $table->integer('quantity')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
