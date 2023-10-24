@@ -11,7 +11,6 @@ import {
 } from "@/Components/shadcn/Card";
 import { ArrowRight, Gauge } from "lucide-react";
 import InviteMembers from "@/Dialogs/InviteMembers";
-import { set } from "date-fns";
 import ConfigureDomain from "@/Dialogs/ConfigureDomain";
 import { Skeleton } from "@/Components/shadcn/Skeleton";
 
@@ -39,7 +38,11 @@ export default function Dashboard({
                         <span className="whitespace-nowrap">Dashboard</span>
                     </div>
                     <div className="hidden items-center ml-auto md:flex no-drag">
-                        <InviteMembers currentWorkspace={currentWorkspace} />
+                        {auth.subscription.is_active && (
+                            <InviteMembers
+                                currentWorkspace={currentWorkspace}
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="overflow-y-scroll flex-1">

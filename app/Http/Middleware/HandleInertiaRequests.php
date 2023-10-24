@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'subscription' => [
                     'has_access' => $current_workspace ? $current_workspace->owner->is(auth()->user()) : false,
-                    'is_active' => $current_workspace ? $current_workspace->subscribed('default') : false,
+                    'is_active' => $current_workspace ? $current_workspace->subscribed('default') || !config('observli.billing_enabled') : false,
                 ],
                 'user' => $request->user() ? UserData::from($request->user()) : null,
             ],
