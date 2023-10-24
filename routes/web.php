@@ -27,8 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
 
     Route::get('/subscription/billing', [SubscriptionController::class, 'redirectToBillingPortal'])->name('subscription.billing');
-    Route::get('/subscription/billing/startup', [SubscriptionController::class, 'redirectToStartupCheckout'])->name('subscription.startup');
-    Route::get('/subscription/billing/pro', [SubscriptionController::class, 'redirectToProCheckout'])->name('subscription.pro');
+    Route::get('/subscription/checkout', [SubscriptionController::class, 'redirectToCheckout'])->name('subscription.checkout');
 
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::post('/events/{id}/actions/execute', [EventController::class, 'executeAction'])->name('events.action.execute');

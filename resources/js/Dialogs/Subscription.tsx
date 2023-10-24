@@ -18,14 +18,13 @@ export default function Subscription({}) {
     const pricing = {
         frequencies: [
             { value: "monthly", label: "Monthly", priceSuffix: "/month" },
-            { value: "annually", label: "Annually", priceSuffix: "/year" },
+            { value: "yearly", label: "Yearly", priceSuffix: "/year" },
         ],
         tiers: [
             {
                 name: "Startup",
-                id: "tier-startup",
-                href: route("subscription.startup"),
-                price: { monthly: "$19", annually: "$190" },
+                id: "startup",
+                price: { monthly: "$19", yearly: "$190" },
                 features: [
                     "5,000 events / month",
                     "Unlimited retention",
@@ -35,9 +34,8 @@ export default function Subscription({}) {
             },
             {
                 name: "Pro",
-                id: "tier-pro",
-                href: route("subscription.pro"),
-                price: { monthly: "$49", annually: "$490" },
+                id: "pro",
+                price: { monthly: "$49", yearly: "$490" },
                 features: [
                     "15,000 events / month",
                     "Unlimited retention",
@@ -118,7 +116,9 @@ export default function Subscription({}) {
                                 </span>
                             </p>
                             <a
-                                href={tier.href}
+                                href={route("subscription.checkout", {
+                                    variant: `${tier.id}_${frequency.value}`,
+                                })}
                                 aria-describedby={tier.id}
                                 className={classNames(
                                     "bg-wedgewood-600 text-white shadow-sm hover:bg-wedgewood-500 mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wedgewood-600"

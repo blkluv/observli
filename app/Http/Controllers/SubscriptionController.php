@@ -14,11 +14,15 @@ class SubscriptionController extends Controller
         return Inertia::location($workspace->billingPortalUrl(route('home')));
     }
 
-    public function redirectToStartupCheckout(Request $request)
+    public function redirectToCheckout(Request $request)
     {
+        $variant = $request->query('variant') ?? "startup_monthly";
         $prices = collect(Cashier::stripe()->prices->all()['data']);
+        $price = $prices->filter(function ($price) use ($variant) {
+            return $price['lookup_key'] === $variant;
+        })->first();
         $workspace = $request->user()->currentWorkspace;
         $workspace->createOrGetStripeCustomer();
-        return $workspace->newSubscription('default', $prices->sortBy('unit_amount')->first()->id)->checkout();
+        return $workspace->newSubscription('default', $price->id)->checkout();
     }
 }
