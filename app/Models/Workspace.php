@@ -27,13 +27,23 @@ class Workspace extends Model
     protected $fillable = ['name', 'domain', 'avatar'];
 
     /**
-     * Get all of the forms for the workspace.
+     * Get all of the events for the workspace.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    /**
+     * Get all of the actions for the workspace.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function actions()
+    {
+        return $this->hasManyThrough(Action::class, Event::class);
     }
 
     /**

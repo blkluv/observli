@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
@@ -29,8 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/subscription/billing', [SubscriptionController::class, 'redirectToBillingPortal'])->name('subscription.billing');
     Route::get('/subscription/checkout', [SubscriptionController::class, 'redirectToCheckout'])->name('subscription.checkout');
 
+    Route::post('/actions/{id}/execute', [ActionController::class, 'execute'])->name('actions.execute');
+
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
-    Route::post('/events/{id}/actions/execute', [EventController::class, 'executeAction'])->name('events.action.execute');
 
     Route::post('/tokens', [ApiTokenController::class, 'store'])->name('tokens.store');
     Route::delete('/tokens/{id}', [ApiTokenController::class, 'destroy'])->name('tokens.destroy');

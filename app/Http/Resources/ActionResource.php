@@ -23,6 +23,7 @@ class ActionResource extends BaseResource
         $payload['timestamp'] = now()->timestamp;
         unset($payload['created_at']);
         unset($payload['updated_at']);
+        unset($payload['laravel_through_key']);
         if(!$is_top_level) {
             unset($payload['created']);
             unset($payload['context']);

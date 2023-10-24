@@ -18,7 +18,6 @@ import {
     TableCell,
     TableRow,
 } from "@/Components/shadcn/Table";
-import { Play } from "lucide-react";
 
 import { useToast } from "@/Components/shadcn/Toast/use-toast";
 import { PlayActions } from "@/Components/PlayActions";
@@ -85,7 +84,7 @@ export default function Show({ auth, currentWorkspace, event, workspaces }) {
                                                 {event.subtitle}
                                             </p>
                                         </div>
-                                        {event.manual_actions.length > 0 && (
+                                        {event.has_manual_actions && (
                                             <PlayActions
                                                 event={event}
                                                 size="large"

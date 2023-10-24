@@ -5,19 +5,14 @@ import React from "react";
 export function PlayActions({ event, size = "large" }) {
     const handlePlayActionsClicked = (e, event) => {
         e.stopPropagation();
-        event.manual_actions.forEach((action) => {
+        event.actions.forEach((action) => {
             switch (action.type) {
                 case "visit_url":
                     let link = document.createElement("a");
                     link.href = action.context.url;
                     link.target = "_blank";
                     link.click();
-                    window.axios.post(
-                        route("events.action.execute", event.id),
-                        {
-                            type: action.type,
-                        }
-                    );
+                    window.axios.post(route("actions.execute", action.id));
                     break;
             }
         });
@@ -28,7 +23,7 @@ export function PlayActions({ event, size = "large" }) {
 
     return size == "large" ? (
         <button
-            disabled={event.manual_actions.length === 0}
+            disabled={!event.has_manual_actions}
             onClick={(e) => {
                 handlePlayActionsClicked(e, event);
             }}
@@ -38,7 +33,7 @@ export function PlayActions({ event, size = "large" }) {
         </button>
     ) : (
         <button
-            disabled={event.manual_actions.length === 0}
+            disabled={!event.has_manual_actions}
             onClick={(e) => {
                 handlePlayActionsClicked(e, event);
             }}
