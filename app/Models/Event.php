@@ -15,7 +15,6 @@ class Event extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'actions' => 'array',
         'context' => 'object'
     ];
 
@@ -25,7 +24,6 @@ class Event extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'actions',
         'context',
         'subtitle',
         'title'
@@ -35,18 +33,25 @@ class Event extends Model
     protected static function booted()
     {
         static::creating(function ($event) {
-            if($event->actions === null) {
-                $event->actions = [];
-            }
             if ($event->context === null) {
                 $event->context = (object) [];
             }
         });
     }
 
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
+
     public function topics()
     {
         return $this->belongsToMany(Topic::class);
+    }
+
+    public function usage()
+    {
+        return $this->morphOne(Usage::class, 'usable');
     }
 
     public function workspace()

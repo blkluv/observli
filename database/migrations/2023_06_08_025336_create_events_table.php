@@ -16,7 +16,6 @@ return new class () extends Migration {
             $table->string('title');
             $table->string('subtitle')->nullable();
             $table->json('context');
-            $table->json('actions');
             $table->timestamps();
         });
     }

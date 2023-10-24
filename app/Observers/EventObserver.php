@@ -12,6 +12,8 @@ class EventObserver
     {
         $event->workspace->notify(new EventCreated($event));
         $event->workspace->usage()->create([
+            'usable_id' => $event->id,
+            'usable_type' => Event::class,
             'type' => config('observli.usage.types.event.created'),
             'timestamp' => $event->created_at
         ]);

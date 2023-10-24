@@ -9,7 +9,14 @@ class Usage extends Model
     protected $fillable = [
         'type',
         'timestamp',
+        'usable_id',
+        'usable_type',
     ];
+
+    public function usable()
+    {
+        return $this->morphTo();
+    }
 
     public function user()
     {
