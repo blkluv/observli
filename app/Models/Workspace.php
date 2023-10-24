@@ -9,9 +9,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Laravel\Cashier\Billable;
 
 class Workspace extends Model
 {
+    use Billable;
     use HasApiTokens;
     use Notifiable;
     use SoftDeletes;
@@ -218,4 +220,11 @@ class Workspace extends Model
         }
         return array_reverse($event_count);
     }
+
+    public function stripeEmail(): string|null
+    {
+        return $this->owner->email;
+    }
+
+    
 }

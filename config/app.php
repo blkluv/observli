@@ -63,6 +63,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'billing_enabled' => env('BILLING_ENABLED', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -40,7 +40,7 @@ export default function Show({ auth, currentWorkspace, event, workspaces }) {
         <AuthenticatedLayout
             currentWorkspace={currentWorkspace}
             topics={currentWorkspace.topics}
-            user={auth.user}
+            auth={auth}
             workspaces={workspaces}
         >
             <Head title="Observli" />

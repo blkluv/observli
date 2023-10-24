@@ -25,14 +25,16 @@ import CreateWorkspace from "@/Dialogs/CreateWorkspace";
 import APIToken from "@/Dialogs/APIToken";
 import APITokens from "@/Dialogs/APITokens";
 import Settings from "@/Dialogs/Settings";
+import Subscription from "@/Dialogs/Subscription";
 
 export default function Authenticated({
     topics,
-    user,
+    auth,
     children,
     workspaces,
     currentWorkspace,
 }) {
+    const { user, subscription } = auth;
     const { url } = usePage();
     const { toast } = useToast();
     const [newApiToken, setNewApiToken] = React.useState(null);
@@ -166,12 +168,26 @@ export default function Authenticated({
                                                     handleApiTokenCreated
                                                 }
                                             />
-                                            <DropdownMenuItem>
-                                                Billing
-                                                <DropdownMenuShortcut>
-                                                    ⇧⌘B
-                                                </DropdownMenuShortcut>
-                                            </DropdownMenuItem>
+                                            {subscription.is_active && (
+                                                <DropdownMenuItem
+                                                    onClick={() =>
+                                                        router.visit(
+                                                            route(
+                                                                "subscription.billing"
+                                                            )
+                                                        )
+                                                    }
+                                                >
+                                                    Subscription
+                                                    <DropdownMenuShortcut>
+                                                        ⇧⌘B
+                                                    </DropdownMenuShortcut>
+                                                </DropdownMenuItem>
+                                            )}
+                                            {!subscription.is_active &&
+                                                subscription.has_access && (
+                                                    <Subscription></Subscription>
+                                                )}
                                             <Settings
                                                 workspace={currentWorkspace}
                                             />
@@ -192,15 +208,15 @@ export default function Authenticated({
                             <div className="overflow-y-scroll flex-1 pt-3 space-y-[21px] font-medium text-gray-300 scrollbar-hide">
                                 <div>
                                     <div>
-                                        <a
-                                            href="/"
+                                        <Link
+                                            href={route("home")}
                                             className={classNames(
                                                 "flex items-center px-2 mx-2 py-1 rounded group relative text-dark-200 hover:text-white transition",
                                                 url === "/" && "text-white"
                                             )}
                                         >
                                             Dashboard
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="mt-[5px] space-y-0.5">

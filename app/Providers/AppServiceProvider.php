@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Broadcasting\Broadcasters\PusherBroadcaster;
 use Illuminate\Broadcasting\BroadcastManager;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Cashier\Cashier;
 use Pusher\Pusher;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
+
+        Cashier::ignoreMigrations();
     }
 
     /**
@@ -44,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
                 return new PusherBroadcaster($pusher);
             });
         }
+
+        Cashier::useCustomerModel(Workspace::class);
     }
 }

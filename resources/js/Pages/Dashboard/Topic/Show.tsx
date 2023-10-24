@@ -46,7 +46,7 @@ export default function Show({
         <AuthenticatedLayout
             currentWorkspace={currentWorkspace}
             topics={currentWorkspace.topics}
-            user={auth.user}
+            auth={auth}
             workspaces={workspaces}
         >
             <Head title={"# " + topic.name} />

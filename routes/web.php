@@ -5,6 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +21,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
     Route::get('/t', [TopicController::class, 'index'])->name('topics.index');
     Route::get('/t/{id}', [TopicController::class, 'show'])->name('topics.show');
     Route::get('/e/{id}', [EventController::class, 'show'])->name('events.show');
+
+    Route::get('/subscription/billing', [SubscriptionController::class, 'redirectToBillingPortal'])->name('subscription.billing');
+    Route::get('/subscription/billing/startup', [SubscriptionController::class, 'redirectToStartupCheckout'])->name('subscription.startup');
+    Route::get('/subscription/billing/pro', [SubscriptionController::class, 'redirectToProCheckout'])->name('subscription.pro');
 
     Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
     Route::post('/events/{id}/actions/execute', [EventController::class, 'executeAction'])->name('events.action.execute');
@@ -37,7 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/workspaces', [WorkspaceController::class, 'destroy'])->name('workspaces.destroy');
     Route::post('/workspaces/{id}/invite', [WorkspaceController::class, 'invite'])->name('workspaces.invite');
 
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

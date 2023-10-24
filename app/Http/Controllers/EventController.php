@@ -20,7 +20,7 @@ class EventController extends Controller
     {
         $event = $request->user()->currentWorkspace->events()->findOrFail($id);
         $event->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function executeAction(Request $request, $id)

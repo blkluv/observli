@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
 
         if($auth = auth()->user()){
             if($workspace->hasUserWithEmail($auth->email)) {
-                return redirect(route('dashboard'));
+                return redirect(route('home'));
             }
         }
 

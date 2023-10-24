@@ -34,11 +34,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $current_workspace = $request->user() ? $request->user()->currentWorkspace : null;
+
         return array_merge(parent::share($request), [
             'auth' => [
+                'subscription' => [
+                    'has_access' => $current_workspace ? $current_workspace->owner->is(auth()->user()) : false,
+                    'is_active' => $current_workspace ? $current_workspace->subscribed('default') : false,
+                ],
                 'user' => $request->user() ? UserData::from($request->user()) : null,
             ],
-            'currentWorkspace' => $request->user() ? CurrentWorkspaceData::from($request->user()->currentWorkspace) : null,
+            'currentWorkspace' => $request->user() ? CurrentWorkspaceData::from($current_workspace) : null,
             'workspaces' => $request->user() ? WorkspaceData::collection($request->user()->workspaces)->toArray() : [],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy())->toArray(), [

@@ -17,14 +17,14 @@ class WorkspaceController extends Controller
             'avatar' => $request->avatar == "" ? null : $request->avatar,
         ]);
         $request->user()->switchWorkspace($workspace);
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function switch(Request $request, $id)
     {
         $workspace = $request->user()->workspaces()->findOrFail($id);
         $request->user()->switchWorkspace($workspace);
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function invite(Request $request, $id)
@@ -48,7 +48,7 @@ class WorkspaceController extends Controller
             token: $token,
             workspace: $workspace,
         ));
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function update(Request $request)
@@ -73,6 +73,6 @@ class WorkspaceController extends Controller
         $request->user()->currentWorkspace()->delete();
         $request->user()->switchWorkspace($request->user()->ownedWorkspaces()->first());
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }
