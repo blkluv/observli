@@ -58,4 +58,13 @@ class Event extends Model
     {
         return $this->belongsTo(Workspace::class);
     }
+
+    public function scopeRetained($query)
+    {
+        if(!$this->workspace->subscribed('default')){
+            $retention_period = config('observli.usage.retention.free');
+            return $query->where('created_at', '>=', now()->subDays($retention_period));
+        }
+        return $query;
+    }
 }

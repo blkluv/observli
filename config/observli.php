@@ -21,6 +21,9 @@ return [
                 'startup' => 2500,
                 'pro' => 25000,
             ],
+            'retention' => [
+                'free' => 14,
+            ],
         ],
         'types' => [
             'action' => [

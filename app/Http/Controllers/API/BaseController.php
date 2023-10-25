@@ -15,7 +15,9 @@ class BaseController extends Controller
     public function sendResponse($result, $status_code = 200, $message = null)
     {
         $response = [
-            'data' => $result
+            'data' => $result,
+            'status' => $status_code,
+            'timestamp' => now()->timestamp,
         ];
 
         if($message) $response['message'] = $message;
@@ -32,7 +34,9 @@ class BaseController extends Controller
     public function sendError($error, $status_code = 404, $messages = [])
     {
         $response = [
-            'message' => $error,
+            'error' => $error,
+            'status' => $status_code,
+            'timestamp' => now()->timestamp,
         ];
 
 

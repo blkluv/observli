@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Data\EventData;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -24,17 +23,17 @@ class EventController extends BaseController
         $payload = [
             'title' => $request->title,
             'context' => (object) $request->context,
-            'message' => $request->message ?? null,
-            'workspace_id' => $workspace->id,
+            'subtitle' => $request->subtitle ?? null,
         ];
 
         $event = $workspace->events()->create($payload);
 
         $topics = $request->topics ?? ["general"];
-        foreach($topics as $topic) {
+        foreach($topics as $t) {
+            $slugged = Str::slug($t);
             $topic = $workspace->topics()->firstOrCreate([
-                'name' => $topic,
-                'slug' => Str::slug($topic),
+                'name' => $slugged,
+                'slug' => $slugged,
             ]);
             if($topic->wasRecentlyCreated) {
                 $topic->update(['description' => 'A topic created by an event']);
@@ -59,6 +58,6 @@ class EventController extends BaseController
 
         $event = Event::findOrFail($id);
 
-        return $this->sendResponse(EventData::from($event));
+        return $this->sendResponse(new EventResource($event));
     }
 }

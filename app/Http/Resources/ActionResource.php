@@ -20,7 +20,6 @@ class ActionResource extends BaseResource
         $payload['event_id'] = (new HashidManager())->encode($this->event_id);
         $payload['created'] = $this->created_at->timestamp;
         $payload['is_executed'] = $this->is_executed;
-        $payload['timestamp'] = now()->timestamp;
         unset($payload['created_at']);
         unset($payload['updated_at']);
         unset($payload['laravel_through_key']);
@@ -30,7 +29,7 @@ class ActionResource extends BaseResource
             unset($payload['event_id']);
             unset($payload['timestamp']);
         }
-        $payload = $this->sort_like($payload, ["id", "workspace_id", "title", "context", "actions", "created", "timestamp"]);
+        $payload = $this->sort_like($payload, ["id", "workspace_id", "title", "context", "actions", "created"]);
         return $payload;
     }
 }

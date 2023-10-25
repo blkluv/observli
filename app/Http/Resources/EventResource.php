@@ -19,11 +19,11 @@ class EventResource extends BaseResource
         $payload['workspace_id'] = (new HashidManager())->encode($this->workspace_id);
         $payload['created'] = $this->created_at->timestamp;
         $payload['actions'] = ActionResource::collection($this->actions);
-        $payload['timestamp'] = now()->timestamp;
+        $payload['topics'] = collect($this->topics)->pluck('name')->toArray();
         unset($payload['workspace']);
         unset($payload['created_at']);
         unset($payload['updated_at']);
-        $payload = $this->sort_like($payload, ["id", "workspace_id", "title", "context", "actions", "created", "timestamp"]);
+        $payload = $this->sort_like($payload, ["id", "workspace_id", "title", "subtitle", "context", "actions", "topics", "created"]);
         return $payload;
     }
 }
